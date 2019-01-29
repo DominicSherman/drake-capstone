@@ -1,9 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import App from '../src/App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('App.js', () => {
+    let renderedComponent;
+
+    const renderComponent = () => {
+        const shallowRenderer = ShallowRenderer.createRenderer();
+
+        shallowRenderer.render(<App />);
+
+        renderedComponent = shallowRenderer.getRenderOutput();
+    };
+
+    beforeEach(() => {
+        renderComponent();
+    });
+
+    it('should render a root div', () => {
+        expect(renderedComponent.type).toBe('div');
+    });
 });
