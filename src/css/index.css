@@ -1,14 +1,45 @@
+@font-face {
+  font-family: 'Lubalin';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../assets/fonts/Lubalin.otf');
+}
+
+@font-face {
+  font-family: 'Ananda';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../assets/fonts/Ananda.ttf');
+}
+
+@font-face {
+  font-family: 'Avenir';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../assets/fonts/AvenirLight.otf');
+}
+
+@font-face {
+  font-family: 'BigNoodle';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../assets/fonts/BigNoodle.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Avenir';
+  font-size: 1.1vw;
+  background-color: #ebebeb;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+p {
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  margin: 0;
+  padding: 0;
 }
