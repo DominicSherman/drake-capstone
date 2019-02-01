@@ -1,0 +1,1 @@
+export const INSTAGRAM_SELF_INFO = `https://api.instagram.com/v1/users/self`;
