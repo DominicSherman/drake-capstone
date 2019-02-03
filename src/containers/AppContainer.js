@@ -1,10 +1,16 @@
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as ActionCreators from '../redux/action-creators';
 import App from '../App';
+import {setInstagramAccessToken, setInstagramMedia, setInstagramUser} from '../redux/action-creators';
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = (state) => ({
+    instagramMedia: state.instagramMedia,
+    instagramUser: state.instagramUser
+});
 
-const mapDispatchToProps = (dispatch) => ({actions: bindActionCreators(ActionCreators, dispatch)});
+const mapDispatchToProps = (dispatch) => ({
+    setAccessToken: (accessToken) => dispatch(setInstagramAccessToken(accessToken)),
+    setInstagramMedia: () => dispatch(setInstagramMedia()),
+    setInstagramUser: () => dispatch(setInstagramUser())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
