@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import styles from './css/App.module.css';
-import {INSTAGRAM_AUTH} from './constants/links';
 import InstagramUserInfo from './components/InstagramUserInfo';
 import InstagramMedia from './components/InstagramMedia';
+import {getInstagramAuthLink} from './services/redirect-service';
 
 class App extends Component {
     componentDidMount() {
         if (!window.location.hash) {
-            window.location.href = INSTAGRAM_AUTH;
+            window.location.href = getInstagramAuthLink();
         } else {
             const accessToken = window.location.hash.substr(14);
             this.props.setAccessToken(accessToken);
