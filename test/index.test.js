@@ -1,6 +1,7 @@
 import Chance from 'chance';
 import reactDOM from 'react-dom';
-import App from '../src/App';
+import {Provider} from 'react-redux';
+import AppContainer from '../src/containers/AppContainer';
 
 jest.mock('react-dom');
 
@@ -13,19 +14,21 @@ describe('index', () => {
     let globalElement;
 
     const requireModule = () => require('../src/index');
-    const getApp = () => reactDOM.render.mock.calls[0][0];
+    const getProvider = () => reactDOM.render.mock.calls[0][0];
+    const getApp = () => getProvider().props.children;
 
     beforeAll(() => {
         globalElement = chance.string();
         document.getElementById = jest.fn(() => globalElement);
     });
 
-    it('should call ReactDOM with App and html element', () => {
+    it('should call ReactDOM with Provider, App and html element', () => {
         requireModule();
 
         expect(reactDOM.render).toHaveBeenCalledTimes(1);
 
-        expect(getApp().type).toBe(App);
+        expect(getProvider().type).toBe(Provider);
+        expect(getApp().type).toBe(AppContainer);
 
         const actualGlobalElement = reactDOM.render.mock.calls[0][1];
 
