@@ -8,6 +8,7 @@ export default class InstagramPost extends Component {
         return (
             <div className={styles.wrapper}>
                 <img
+                    alt={''}
                     className={styles.image}
                     src={post.images.standard_resolution.url}
                 />
