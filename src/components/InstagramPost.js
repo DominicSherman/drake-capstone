@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import InstagramEmbed from 'react-instagram-embed';
 import styles from '../css/components/InstagramPost.module.css';
 
 export default class InstagramPost extends Component {
@@ -6,14 +7,10 @@ export default class InstagramPost extends Component {
         const {post} = this.props;
 
         return (
-            <div className={styles.wrapper}>
-                <img
-                    alt={''}
-                    className={styles.image}
-                    src={post.images.standard_resolution.url}
-                />
-                <p>{post.caption ? post.caption.text : ''}</p>
-            </div>
+            <InstagramEmbed
+                className={styles.wrapper}
+                url={post.link}
+            />
         );
     }
 }
