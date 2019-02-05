@@ -3,6 +3,7 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 
 import App from '../src/App';
 import {getInstagramAuthLink} from '../src/services/redirect-service';
+
 import {chance} from './chance.js';
 
 jest.mock('../src/services/redirect-service');
@@ -49,14 +50,15 @@ describe('App.js', () => {
 
         it('should call the action creators if there is a hash', () => {
             const expectedHash = chance.string();
+
             global.window = {
                 location: {
                     hash: expectedHash
                 }
             };
-            
+
             renderedInstance.componentDidMount();
-            
+
             expect(expectedProps.setAccessToken).toHaveBeenCalledTimes(1);
             expect(expectedProps.setAccessToken).toHaveBeenCalledWith(expectedHash.substr(14));
             expect(expectedProps.setInstagramUser).toHaveBeenCalledTimes(1);

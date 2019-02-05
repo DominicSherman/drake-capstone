@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import styles from './css/App.module.css';
 import InstagramUserInfo from './components/InstagramUserInfo';
 import InstagramMedia from './components/InstagramMedia';
@@ -10,6 +11,7 @@ class App extends Component {
             window.location.href = getInstagramAuthLink();
         } else {
             const accessToken = window.location.hash.substr(14);
+
             this.props.setAccessToken(accessToken);
             this.props.setInstagramUser();
             this.props.setInstagramMedia();
