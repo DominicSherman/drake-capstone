@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import InstagramPost from './InstagramPost';
+
 import styles from '../css/components/InstagramMedia.module.css';
+
+import InstagramPost from './InstagramPost';
 
 export default class InstagramMedia extends Component {
     render() {

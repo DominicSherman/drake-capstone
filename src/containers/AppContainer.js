@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+
 import App from '../App';
 import {setInstagramAccessToken, setInstagramMedia, setInstagramUser} from '../redux/action-creators';
 

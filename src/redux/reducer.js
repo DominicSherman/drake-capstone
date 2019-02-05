@@ -11,14 +11,14 @@ const setInstagramAccessToken = (state, instagramAccessToken) => ({
     instagramAccessToken
 });
 
-const setInstagramUser = (state, instagramUser) => ({
-    ...state,
-    instagramUser
-});
-
 const setInstagramMedia = (state, instagramMedia) => ({
     ...state,
     instagramMedia
+});
+
+const setInstagramUser = (state, instagramUser) => ({
+    ...state,
+    instagramUser
 });
 
 const reducerMap = {

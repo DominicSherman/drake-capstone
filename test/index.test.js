@@ -1,6 +1,7 @@
 import Chance from 'chance';
 import reactDOM from 'react-dom';
 import {Provider} from 'react-redux';
+
 import AppContainer from '../src/containers/AppContainer';
 
 jest.mock('react-dom');

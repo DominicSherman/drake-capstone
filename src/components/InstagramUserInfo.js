@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import styles from '../css/components/InstagramUserInfo.module.css';
 import instagramLogo from '../assets/instagram-logo.png';
 

@@ -1,15 +1,14 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+import InstagramEmbed from 'react-instagram-embed';
+
 import InstagramPost from '../../src/components/InstagramPost';
 import {createRandomInstagramPost} from '../models';
-import InstagramEmbed from 'react-instagram-embed';
 
 describe('InstagramPost', () => {
     let expectedProps,
 
         renderedComponent;
-
-    const cacheChildren = () => {};
 
     const renderComponent = () => {
         const shallowRenderer = ShallowRenderer.createRenderer();
@@ -17,8 +16,6 @@ describe('InstagramPost', () => {
         shallowRenderer.render(<InstagramPost {...expectedProps} />);
 
         renderedComponent = shallowRenderer.getRenderOutput();
-
-        cacheChildren();
     };
 
     beforeEach(() => {

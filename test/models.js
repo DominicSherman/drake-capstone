@@ -6,7 +6,6 @@ export const createRandomInstagramPost = (post = {}) => ({
     ...post
 });
 
-/* eslint-disable camelcase */
 export const createRandomInstagramUser = (user = {}) => ({
     bio: chance.string(),
     counts: {
@@ -18,4 +17,3 @@ export const createRandomInstagramUser = (user = {}) => ({
     profile_picture: chance.string(),
     ...user
 });
-/* eslint-enable camelcase */

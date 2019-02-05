@@ -1,5 +1,6 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+
 import InstagramUserInfo from '../../src/components/InstagramUserInfo';
 import {createRandomInstagramUser} from '../models';
 
@@ -8,16 +9,12 @@ describe('InstagramUserInfo', () => {
 
         renderedComponent;
 
-    const cacheChildren = () => {};
-
     const renderComponent = () => {
         const shallowRenderer = ShallowRenderer.createRenderer();
 
         shallowRenderer.render(<InstagramUserInfo {...expectedProps} />);
 
         renderedComponent = shallowRenderer.getRenderOutput();
-
-        cacheChildren();
     };
 
     beforeEach(() => {
@@ -36,6 +33,6 @@ describe('InstagramUserInfo', () => {
         expectedProps.instagramUser = {};
         renderComponent();
 
-        expect(renderedComponent).toBeNull()
+        expect(renderedComponent).toBeNull();
     });
 });
