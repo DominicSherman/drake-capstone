@@ -7,6 +7,7 @@ module.exports = {
         'react/prop-types': 'off',
         'node/no-unpublished-import': 0,
         'react/prefer-stateless-function': 0,
-        'jest/consistent-test-it': 0
+        'jest/consistent-test-it': 0,
+        'camelcase': 0
     }
 };
