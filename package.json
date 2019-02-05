@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "7.1.6",
     "@svgr/webpack": "2.4.1",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
+    "babel-loader": "8.0.4",
     "babel-plugin-named-asset-import": "^0.3.0",
-    "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^7.0.0",
-    "babel-runtime": "^6.26.0",
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "chalk": "2.4.1",
@@ -16,6 +18,12 @@
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
+    "eslint-config-react-app": "^3.0.6",
+    "eslint-loader": "2.1.1",
+    "eslint-plugin-flowtype": "2.50.1",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.11.1",
     "file-loader": "2.0.0",
     "firebase-tools": "^6.3.1",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
@@ -47,9 +55,6 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-eslint": "7.2.3",
-    "babel-loader": "7.1.4",
     "babel-plugin-transform-es2015-arrow-functions": "6.22.0",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
     "babel-polyfill": "6.26.0",
@@ -57,7 +62,6 @@
     "babel-register": "6.26.0",
     "eslint": "4.19.1",
     "eslint-config-get-off-my-lawn": "4.0.0",
-    "eslint-loader": "^2.1.2",
     "react-test-renderer": "^16.7.0"
   },
   "scripts": {
