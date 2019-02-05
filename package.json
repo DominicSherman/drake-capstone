@@ -67,9 +67,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "jest --coverage",
-    "deploy": "yarn build && firebase deploy",
-    "lint": "eslint --ext .js src --ext .js test/"
+    "lint": "eslint --ext .js src --ext .js test/",
+    "coverage": "jest --coverage",
+    "test": "yarn lint && yarn coverage",
+    "deploy": "yarn build && firebase deploy"
   },
   "jest": {
     "collectCoverageFrom": [

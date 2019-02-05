@@ -1,3 +1,2 @@
 # PR Checklist
-- [ ] All tests are passing when running `yarn test`
-- [ ] Coverage is passing when running `yarn test` 
+- [ ] Linting, tests, and coverage is passing when running `yarn test` 
