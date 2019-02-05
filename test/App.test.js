@@ -1,5 +1,6 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+
 import App from '../src/App';
 import {getInstagramAuthLink} from '../src/services/redirect-service';
 import {chance} from './chance.js';
