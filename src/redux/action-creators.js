@@ -3,7 +3,7 @@ import rp from 'request-promise';
 import {INSTAGRAM_MEDIA, INSTAGRAM_USER_INFO} from '../constants/endpoints';
 
 import {action} from './action';
-import {SET_INSTAGRAM_ACCESS_TOKEN, SET_INSTAGRAM_MEDIA, SET_INSTAGRAM_USER} from './actions';
+import {SET_CURRENT_VIEW, SET_INSTAGRAM_ACCESS_TOKEN, SET_INSTAGRAM_MEDIA, SET_INSTAGRAM_USER} from './actions';
 
 export const setInstagramAccessToken = (accessToken) => action(SET_INSTAGRAM_ACCESS_TOKEN, accessToken);
 
@@ -30,3 +30,5 @@ export const setInstagramMedia = () => async (dispatch, getState) => {
 
     dispatch(action(SET_INSTAGRAM_MEDIA, userMediaResponse.data));
 };
+
+export const setCurrentView = (currentView) => action(SET_CURRENT_VIEW, currentView);
