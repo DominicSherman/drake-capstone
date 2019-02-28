@@ -5,6 +5,10 @@ import {Button, ButtonGroup} from 'react-bootstrap';
 import App from '../src/App';
 import {getInstagramAuthLink} from '../src/services/redirect-service';
 import {ANALYTICS, FACEBOOK, INSTAGRAM, TWITTER} from '../src/constants/view-types';
+import Analytics from '../src/screens/Analytics';
+import Instagram from '../src/screens/Instagram';
+import Twitter from '../src/screens/Twitter';
+import Facebook from '../src/screens/Facebook';
 
 import {chance} from './chance';
 
@@ -52,6 +56,7 @@ describe('App.js', () => {
 
     beforeEach(() => {
         expectedProps = {
+            currentView: chance.string(),
             setAccessToken: jest.fn(),
             setCurrentView: jest.fn(),
             setInstagramMedia: jest.fn(),
@@ -145,5 +150,35 @@ describe('App.js', () => {
 
         expect(expectedProps.setCurrentView).toHaveBeenCalledTimes(1);
         expect(expectedProps.setCurrentView).toHaveBeenCalledWith(ANALYTICS);
+    });
+
+    describe('MainComponent', () => {
+        it('should render Analytics View', () => {
+            expectedProps.currentView = ANALYTICS;
+            renderComponent();
+
+            expect(renderedMainComponent.type).toBe(Analytics);
+        });
+
+        it('should render Instagram View', () => {
+            expectedProps.currentView = INSTAGRAM;
+            renderComponent();
+
+            expect(renderedMainComponent.type).toBe(Instagram);
+        });
+
+        it('should render Twitter View', () => {
+            expectedProps.currentView = TWITTER;
+            renderComponent();
+
+            expect(renderedMainComponent.type).toBe(Twitter);
+        });
+
+        it('should render Facebook View', () => {
+            expectedProps.currentView = FACEBOOK;
+            renderComponent();
+
+            expect(renderedMainComponent.type).toBe(Facebook);
+        });
     });
 });
