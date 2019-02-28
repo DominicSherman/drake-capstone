@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Container from 'react-bootstrap/es/Container';
-import Row from 'react-bootstrap/es/Row';
-import Col from 'react-bootstrap/es/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import InstagramMedia from '../components/InstagramMedia';
 import InstagramUserInfo from '../components/InstagramUserInfo';

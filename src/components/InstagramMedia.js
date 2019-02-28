@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import InstagramEmbed from 'react-instagram-embed';
 
 import styles from '../css/components/InstagramMedia.module.css';
-import InstagramEmbed from 'react-instagram-embed';
 
 export default class InstagramMedia extends Component {
     render() {
@@ -14,6 +14,7 @@ export default class InstagramMedia extends Component {
             >
                 {instagramMedia.map((post) =>
                     <InstagramEmbed
+                        key={post.id}
                         url={post.link}
                     />
                 )}
