@@ -2,19 +2,51 @@ import React, {Component} from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import queryString from 'query-string';
 
 import InstagramMedia from '../components/InstagramMedia';
 import InstagramUserInfo from '../components/InstagramUserInfo';
 
-let userInfoRef;
+let userInfoRef = {
+    clientWidth: 0
+};
 
 export default class Instagram extends Component {
     componentDidMount() {
-        userInfoRef = document.getElementById('userInfo');
+        const accessToken = queryString.parse(window.location.search).accessToken;
+
+        this.props.setInstagramAccessToken(accessToken);
+
+        if (accessToken) {
+            this.props.setInstagramUser();
+            this.props.setInstagramMedia();
+        }
+    }
+
+    componentDidUpdate() {
+        const ref = document.getElementById('userInfo');
+
+        if (userInfoRef.clientWidth !== ref.clientWidth) {
+            userInfoRef = ref;
+        }
     }
 
     render() {
-        const {instagramUser, instagramMedia} = this.props;
+        const {instagramAccessToken, instagramUser, instagramMedia} = this.props;
+
+        if (!instagramAccessToken) {
+            return (
+                <Button
+                    onClick={() => {
+                        window.location.href = 'http://localhost:3001/auth/instagram';
+                    }}
+                    variant="dark"
+                >
+                    {'Log in to Instagram'}
+                </Button>
+            );
+        }
 
         return (
             <Container
@@ -26,12 +58,12 @@ export default class Instagram extends Component {
                         sm={4}
                         style={{position: 'fixed'}}
                     >
-                        <InstagramUserInfo instagramUser={instagramUser} />
+                        <InstagramUserInfo instagramUser={instagramUser}/>
                     </Col>
                     <Col>
                         <InstagramMedia
                             instagramMedia={instagramMedia}
-                            userWidth={userInfoRef ? userInfoRef.clientWidth : 0}
+                            userWidth={userInfoRef.clientWidth}
                         />
                     </Col>
                 </Row>

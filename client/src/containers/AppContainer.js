@@ -5,12 +5,13 @@ import {setCurrentView, setInstagramAccessToken, setInstagramMedia, setInstagram
 
 const mapStateToProps = (state) => ({
     currentView: state.currentView,
+    instagramAccessToken: state.instagramAccessToken,
     instagramMedia: state.instagramMedia,
     instagramUser: state.instagramUser
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setAccessToken: (accessToken) => dispatch(setInstagramAccessToken(accessToken)),
+    setInstagramAccessToken: (accessToken) => dispatch(setInstagramAccessToken(accessToken)),
     setCurrentView: (currentView) => dispatch(setCurrentView(currentView)),
     setInstagramMedia: () => dispatch(setInstagramMedia()),
     setInstagramUser: () => dispatch(setInstagramUser())
