@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
+import InstagramEmbed from 'react-instagram-embed';
 
 import styles from '../css/components/InstagramMedia.module.css';
 
-import InstagramPost from './InstagramPost';
-
 export default class InstagramMedia extends Component {
     render() {
-        const {instagramMedia} = this.props;
+        const {instagramMedia, userWidth} = this.props;
 
         return (
-            <div className={styles.wrapper}>
+            <div
+                className={styles.wrapper}
+                style={{marginLeft: userWidth}}
+            >
                 {instagramMedia.map((post) =>
-                    <InstagramPost
+                    <InstagramEmbed
                         key={post.id}
-                        post={post}
+                        url={post.link}
                     />
                 )}
             </div>

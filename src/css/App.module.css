@@ -5,6 +5,10 @@
     flex-direction: column;
 }
 
+.buttonGroupWrapper {
+    padding-bottom: 3%;
+}
+
 .text {
     font-size: 25px;
     font-weight: 600;

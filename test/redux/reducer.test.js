@@ -1,9 +1,16 @@
 import {chance} from '../chance';
 import reducer from '../../src/redux/reducer';
-import {SET_INSTAGRAM_ACCESS_TOKEN, SET_INSTAGRAM_MEDIA, SET_INSTAGRAM_USER} from '../../src/redux/actions';
+import {
+    SET_CURRENT_VIEW,
+    SET_INSTAGRAM_ACCESS_TOKEN,
+    SET_INSTAGRAM_MEDIA,
+    SET_INSTAGRAM_USER
+} from '../../src/redux/actions';
+import {INSTAGRAM} from '../../src/constants/view-types';
 
 describe('reducer', () => {
     const defaultState = {
+        currentView: INSTAGRAM,
         instagramAccessToken: null,
         instagramMedia: [],
         instagramUser: {}
@@ -86,6 +93,26 @@ describe('reducer', () => {
         expect(actualState).toEqual({
             ...originalState,
             instagramUser: expectedData
+        });
+    });
+
+    it('should set currentView when the action is SET_CURRENT_VIEW', () => {
+        const originalState = {
+            [chance.string()]: chance.string(),
+            currentView: chance.string()
+        };
+
+        const expectedData = chance.string();
+        const action = {
+            data: expectedData,
+            type: SET_CURRENT_VIEW
+        };
+
+        const actualState = reducer(originalState, action);
+
+        expect(actualState).toEqual({
+            ...originalState,
+            currentView: expectedData
         });
     });
 });

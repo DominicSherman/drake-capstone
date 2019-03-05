@@ -1,10 +1,10 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+import InstagramEmbed from 'react-instagram-embed';
 
 import InstagramMedia from '../../src/components/InstagramMedia';
 import {createRandomInstagramPost} from '../models';
 import {chance} from '../chance';
-import InstagramPost from '../../src/components/InstagramPost';
 
 describe('InstagramMedia', () => {
     let expectedProps,
@@ -32,14 +32,14 @@ describe('InstagramMedia', () => {
     });
 
     it('should render an InstagramPost component for each media', () => {
-        const instagramPosts = renderedComponent.props.children;
+        const renderedInstagramPosts = renderedComponent.props.children;
 
         expectedProps.instagramMedia.forEach((post, index) => {
-            const renderedPost = instagramPosts[index];
+            const renderedPost = renderedInstagramPosts[index];
 
-            expect(renderedPost.type).toBe(InstagramPost);
+            expect(renderedPost.type).toBe(InstagramEmbed);
             expect(renderedPost.key).toBe(post.id.toString());
-            expect(renderedPost.props.post).toBe(post);
+            expect(renderedPost.props.url).toBe(post.link);
         });
     });
 });
