@@ -1,11 +1,9 @@
-import {INSTAGRAM_CLIENT_ID, LOCAL_REDIRECT_URI, REDIRECT_URI} from '../config';
+import {INSTAGRAM_LOCAL_REDIRECT_URI, INSTAGRAM_REDIRECT_URI} from '../config';
 
-export const getRedirectUri = () => {
+export const getInstagramRedirectUri = () => {
     if (window.location.hostname === 'localhost') {
-        return LOCAL_REDIRECT_URI;
+        return INSTAGRAM_LOCAL_REDIRECT_URI;
     }
 
-    return REDIRECT_URI;
+    return INSTAGRAM_REDIRECT_URI;
 };
-
-export const getInstagramAuthLink = () => `https://api.instagram.com/oauth/authorize/?client_id=${INSTAGRAM_CLIENT_ID}&redirect_uri=${getRedirectUri()}&response_type=token`;

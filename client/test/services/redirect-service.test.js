@@ -1,5 +1,5 @@
 import {getInstagramAuthLink, getRedirectUri} from '../../src/services/redirect-service';
-import {INSTAGRAM_CLIENT_ID, LOCAL_REDIRECT_URI, REDIRECT_URI} from '../../src/config';
+import {INSTAGRAM_CLIENT_ID, LOCAL_REDIRECT_URI, INSTAGRAM_REDIRECT_URI} from '../../src/config';
 import {chance} from '../chance';
 
 describe('redirect-service', () => {
@@ -16,7 +16,7 @@ describe('redirect-service', () => {
             expect(actualValue).toEqual(LOCAL_REDIRECT_URI);
         });
 
-        it('should return REDIRECT_URI if it is localhost', () => {
+        it('should return INSTAGRAM_REDIRECT_URI if it is localhost', () => {
             global.window = {
                 location: {
                     hostname: chance.string()
@@ -25,7 +25,7 @@ describe('redirect-service', () => {
 
             const actualValue = getRedirectUri();
 
-            expect(actualValue).toEqual(REDIRECT_URI);
+            expect(actualValue).toEqual(INSTAGRAM_REDIRECT_URI);
         });
     });
 
@@ -39,7 +39,7 @@ describe('redirect-service', () => {
 
             const actualValue = getInstagramAuthLink();
 
-            expect(actualValue).toEqual(`https://api.instagram.com/oauth/authorize/?client_id=${INSTAGRAM_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token`);
+            expect(actualValue).toEqual(`https://api.instagram.com/oauth/authorize/?client_id=${INSTAGRAM_CLIENT_ID}&redirect_uri=${INSTAGRAM_REDIRECT_URI}&response_type=token`);
         });
     });
 });

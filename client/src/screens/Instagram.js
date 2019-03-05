@@ -7,6 +7,7 @@ import queryString from 'query-string';
 
 import InstagramMedia from '../components/InstagramMedia';
 import InstagramUserInfo from '../components/InstagramUserInfo';
+import {getInstagramRedirectUri} from '../services/redirect-service';
 
 let userInfoRef = {
     clientWidth: 0
@@ -16,9 +17,8 @@ export default class Instagram extends Component {
     componentDidMount() {
         const accessToken = queryString.parse(window.location.search).accessToken;
 
-        this.props.setInstagramAccessToken(accessToken);
-
         if (accessToken) {
+            this.props.setInstagramAccessToken(accessToken);
             this.props.setInstagramUser();
             this.props.setInstagramMedia();
         }
@@ -27,7 +27,7 @@ export default class Instagram extends Component {
     componentDidUpdate() {
         const ref = document.getElementById('userInfo');
 
-        if (userInfoRef.clientWidth !== ref.clientWidth) {
+        if (ref && userInfoRef.clientWidth !== ref.clientWidth) {
             userInfoRef = ref;
         }
     }
@@ -39,7 +39,7 @@ export default class Instagram extends Component {
             return (
                 <Button
                     onClick={() => {
-                        window.location.href = 'http://localhost:3001/auth/instagram';
+                        window.location.href = getInstagramRedirectUri();
                     }}
                     variant="dark"
                 >
@@ -58,7 +58,7 @@ export default class Instagram extends Component {
                         sm={4}
                         style={{position: 'fixed'}}
                     >
-                        <InstagramUserInfo instagramUser={instagramUser}/>
+                        <InstagramUserInfo instagramUser={instagramUser} />
                     </Col>
                     <Col>
                         <InstagramMedia
