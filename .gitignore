@@ -1,6 +1,6 @@
 .DS_STORE
 */.DS_STORE
-/node_modules
+node_modules
 scripts/flow/*/.flowconfig
 *~
 *.pyc
@@ -24,4 +24,4 @@ chrome-user-data
 *.swp
 *.swo
 .firebase
-config.js
+.env
