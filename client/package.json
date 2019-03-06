@@ -1,7 +1,6 @@
 {
-  "name": "drake-capstone",
-  "version": "0.1.0",
-  "private": true,
+  "name": "client",
+  "version": "1.0.0",
   "dependencies": {
     "@babel/core": "7.1.6",
     "@svgr/webpack": "2.4.1",
@@ -80,7 +79,7 @@
     "lint": "eslint --ext .js src --ext .js test/",
     "coverage": "jest --coverage",
     "test": "yarn lint && yarn coverage",
-    "deploy": "yarn build && firebase deploy"
+    "deploy": "yarn build && firebase deploy --only hosting"
   },
   "jest": {
     "collectCoverageFrom": [

@@ -1,7 +1,6 @@
 {
-  "name": "drake-capstone",
+  "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",

@@ -33,9 +33,11 @@ passport.use(new InstagramStrategy(strategyConfig, successFunction));
 app.use(passport.initialize());
 app.use(cors());
 
+app.get('/', (req, res) => res.send('Hello world!'));
+
 app.get('/instagram', passport.authenticate('instagram', {failureRedirect: getRedirectUri()}));
 
-app.get('/instagram/callback', passport.authenticate('instagram'), (req, res) => {
+app.get('/instagram/callback', passport.authenticate('instagram', {failureRedirect: getRedirectUri()}), (req, res) => {
     const accessToken = req.authInfo.accessToken;
 
     if (accessToken) {
