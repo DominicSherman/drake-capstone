@@ -3,15 +3,15 @@ import {Button, ButtonGroup} from 'react-bootstrap';
 
 import styles from './css/App.module.css';
 import {ANALYTICS, FACEBOOK, INSTAGRAM, TWITTER} from './constants/view-types';
-import Instagram from './screens/Instagram';
-import Facebook from './screens/Facebook';
 import Twitter from './screens/Twitter';
 import Analytics from './screens/Analytics';
+import FacebookContainer from './containers/FacebookContainer';
+import InstagramContainer from './containers/InstagramContainer';
 
 const viewToComponentEnum = {
     [ANALYTICS]: Analytics,
-    [FACEBOOK]: Facebook,
-    [INSTAGRAM]: Instagram,
+    [FACEBOOK]: FacebookContainer,
+    [INSTAGRAM]: InstagramContainer,
     [TWITTER]: Twitter
 };
 
@@ -60,7 +60,7 @@ class App extends Component {
                         {'Analytics'}
                     </Button>
                 </ButtonGroup>
-                <MainComponent {...this.props} />
+                <MainComponent />
             </div>
         );
     }

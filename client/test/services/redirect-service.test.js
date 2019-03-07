@@ -1,5 +1,5 @@
 import {getInstagramAuthLink, getRedirectUri} from '../../src/services/redirect-service';
-import {INSTAGRAM_CLIENT_ID, LOCAL_REDIRECT_URI, INSTAGRAM_REDIRECT_URI} from '../../src/config';
+import {INSTAGRAM_CLIENT_ID, LOCAL_REDIRECT_URI, INSTAGRAM_REDIRECT_URI} from '../../src/constants/urls';
 import {chance} from '../chance';
 
 describe('redirect-service', () => {
