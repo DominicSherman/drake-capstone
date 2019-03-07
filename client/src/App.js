@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 
 import styles from './css/App.module.css';
-import {getInstagramAuthLink} from './services/redirect-service';
 import {ANALYTICS, FACEBOOK, INSTAGRAM, TWITTER} from './constants/view-types';
 import Instagram from './screens/Instagram';
 import Facebook from './screens/Facebook';
@@ -17,18 +16,6 @@ const viewToComponentEnum = {
 };
 
 class App extends Component {
-    componentDidMount() {
-        if (!window.location.hash) {
-            window.location.href = getInstagramAuthLink();
-        } else {
-            const accessToken = window.location.hash.substr(14);
-
-            this.props.setAccessToken(accessToken);
-            this.props.setInstagramUser();
-            this.props.setInstagramMedia();
-        }
-    }
-
     _getComponent = () => {
         const {currentView} = this.props;
 
