@@ -23,17 +23,18 @@ const strategyConfig = {
     clientID: functions.config().instagram.client_id,
     clientSecret: functions.config().instagram.client_secret
 };
-const successFunction = (accessToken, refreshToken, profile, done) => {
-    console.log('profile, accessToken', profile, accessToken);
+const verifyFunction = (accessToken, refreshToken, profile, done) => {
     done(null, profile, {accessToken});
 };
 
-passport.use(new InstagramStrategy(strategyConfig, successFunction));
+passport.use(new InstagramStrategy(strategyConfig, verifyFunction));
 
 app.use(passport.initialize());
 app.use(cors());
 
-app.get('/', (req, res) => res.send('Hello world!'));
+app.get('/', (req, res) => {
+    res.send('Hello world!');
+});
 
 app.get('/instagram', passport.authenticate('instagram', {failureRedirect: getRedirectUri()}));
 
