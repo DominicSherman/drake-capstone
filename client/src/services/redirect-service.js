@@ -1,9 +1,9 @@
-import {INSTAGRAM_LOCAL_REDIRECT_URI, INSTAGRAM_REDIRECT_URI} from '../config';
+import {LOCAL_REDIRECT_URI, REDIRECT_URI} from '../constants/urls';
 
-export const getInstagramRedirectUri = () => {
+export const getRedirectUri = (type) => {
     if (window.location.hostname === 'localhost') {
-        return INSTAGRAM_LOCAL_REDIRECT_URI;
+        return `${LOCAL_REDIRECT_URI}/${type}`;
     }
 
-    return INSTAGRAM_REDIRECT_URI;
+    return `${REDIRECT_URI}/${type}`;
 };

@@ -1,9 +1,0 @@
-export const INSTAGRAM_CLIENT_ID = 'e7ef9118b0334250acc59784aa445753';
-export const INSTAGRAM_CLIENT_SECRET = '80d2dd77b2674ca1840be90858d12927';
-export const INSTAGRAM_REDIRECT_URI = 'https://us-central1-drake-capstone.cloudfunctions.net/auth/instagram';
-export const INSTAGRAM_LOCAL_REDIRECT_URI = 'http://localhost:5000/drake-capstone/us-central1/auth/instagram';
-export const CODE = '1b2b8993e83d4a49be314a12d9a5e371';
-export const TWITTER_API_KEY = 'B22jZFVCbq1CTGEYP5bk6Kiqz';
-export const TWITTER_API_SECRET = 'mXzOJ90oL8PecZ0K2wkslxTDLacZvg4TkUACzxu011v9oJFNG5';
-export const TWITTER_ACCESS_TOKEN = '2793441592-JzlcICCKUpfwHwPXnzXZbSmwLVpEu8SzainugKx';
-export const TWITTER_ACCESS_TOKEN_SECRET = 'NhzdZJJxAkuI6pXUfNY8FXQT7jVLMghg4jRJaL058QrB3';

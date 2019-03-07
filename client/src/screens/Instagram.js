@@ -7,7 +7,7 @@ import queryString from 'query-string';
 
 import InstagramMedia from '../components/InstagramMedia';
 import InstagramUserInfo from '../components/InstagramUserInfo';
-import {getInstagramRedirectUri} from '../services/redirect-service';
+import {getRedirectUri} from '../services/redirect-service';
 
 let userInfoRef = {
     clientWidth: 0
@@ -15,7 +15,7 @@ let userInfoRef = {
 
 export default class Instagram extends Component {
     componentDidMount() {
-        const accessToken = queryString.parse(window.location.search).accessToken;
+        const accessToken = queryString.parse(window.location.hash).instagramAccessToken;
 
         if (accessToken) {
             this.props.setInstagramAccessToken(accessToken);
@@ -39,7 +39,7 @@ export default class Instagram extends Component {
             return (
                 <Button
                     onClick={() => {
-                        window.location.href = getInstagramRedirectUri();
+                        window.location.href = getRedirectUri('instagram');
                     }}
                     variant="dark"
                 >
