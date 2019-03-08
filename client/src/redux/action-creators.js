@@ -8,7 +8,7 @@ import {
     SET_FACEBOOK_ACCESS_TOKEN,
     SET_INSTAGRAM_ACCESS_TOKEN,
     SET_INSTAGRAM_MEDIA,
-    SET_INSTAGRAM_USER
+    SET_INSTAGRAM_USER, SET_TWITTER_ACCESS_TOKEN
 } from './actions';
 
 export const setInstagramAccessToken = (accessToken) => action(SET_INSTAGRAM_ACCESS_TOKEN, accessToken);
@@ -38,5 +38,7 @@ export const setInstagramMedia = () => async (dispatch, getState) => {
 };
 
 export const setFacebookAccessToken = (accessToken) => action(SET_FACEBOOK_ACCESS_TOKEN, accessToken);
+
+export const setTwitterAccessToken = (accessToken) => action(SET_TWITTER_ACCESS_TOKEN, accessToken);
 
 export const setCurrentView = (currentView) => action(SET_CURRENT_VIEW, currentView);
