@@ -7,6 +7,7 @@ import Analytics from './screens/Analytics';
 import FacebookContainer from './containers/FacebookContainer';
 import InstagramContainer from './containers/InstagramContainer';
 import TwitterContainer from './containers/TwitterContainer';
+import {initializeFirebase} from './services/firebase-service';
 
 const viewToComponentEnum = {
     [ANALYTICS]: Analytics,
@@ -16,6 +17,11 @@ const viewToComponentEnum = {
 };
 
 class App extends Component {
+    componentWillMount() {
+        initializeFirebase();
+        this.props.tryToLoadCredentials();
+    }
+
     _getComponent = () => {
         const {currentView} = this.props;
 
@@ -23,7 +29,7 @@ class App extends Component {
     };
 
     render() {
-        const {setCurrentView} = this.props;
+        const {setCurrentView, logout} = this.props;
         const MainComponent = this._getComponent();
 
         return (
@@ -58,6 +64,13 @@ class App extends Component {
                         variant={'secondary'}
                     >
                         {'Analytics'}
+                    </Button>
+                    <Button
+                        onClick={() => logout()}
+                        size={'30'}
+                        variant={'secondary'}
+                    >
+                        {'Logout'}
                     </Button>
                 </ButtonGroup>
                 <MainComponent />
