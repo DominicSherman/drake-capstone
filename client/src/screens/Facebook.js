@@ -30,7 +30,7 @@ export default class Facebook extends Component {
         }
 
         return (
-            <div>{'FACEBOOK'}</div>
+            <div>{'LOGGED IN TO FACEBOOK'}</div>
         );
     }
 }

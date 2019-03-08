@@ -1,45 +1,40 @@
+require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
 const cors = require('cors');
+const expressSession = require('express-session');
 
-const {getRedirectUri} = require('./config');
-const {strategies} = require('./strategies');
-
-require('dotenv').config();
+const {getRedirectUri} = require('./services/url-service');
+const {strategies} = require('./services/strategy-service');
 
 const app = express();
+
+app.use(expressSession({
+    resave: true,
+    saveUninitialized: true,
+    secret: 'keyboard cat'
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cors());
 
 passport.serializeUser((user, done) => {
     done(null, user);
 });
-
 passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
 strategies.forEach((strategy) => passport.use(strategy));
 
-app.use(passport.initialize());
-app.use(cors());
+const services = ['instagram', 'facebook', 'twitter'];
 
-app.get('/', (req, res) => {
-    res.send('Hello world!');
-});
+services.forEach((service) => {
+    app.get(`/${service}`, passport.authenticate(service));
 
-app.get('/instagram', passport.authenticate('instagram'));
-
-app.get('/instagram/callback', passport.authenticate('instagram'), (req, res) => {
-    const accessToken = req.authInfo.accessToken;
-
-    res.redirect(`${getRedirectUri()}#instagramAccessToken=${accessToken}`);
-});
-
-app.get('/facebook', passport.authenticate('facebook'));
-
-app.get('/facebook/callback', passport.authenticate('facebook'), (req, res) => {
-    const accessToken = req.authInfo.accessToken;
-
-    res.redirect(`${getRedirectUri()}#facebookAccessToken=${accessToken}`);
+    app.get(`/${service}/callback`, passport.authenticate(service), (req, res) => {
+        res.redirect(`${getRedirectUri()}#${service}AccessToken=${req.authInfo.accessToken}`);
+    });
 });
 
 module.exports = app;
