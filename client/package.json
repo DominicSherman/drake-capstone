@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "1.0.0",
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "7.1.6",
     "@svgr/webpack": "2.4.1",
