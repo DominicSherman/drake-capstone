@@ -8,24 +8,38 @@ import queryString from 'query-string';
 import InstagramMedia from '../components/InstagramMedia';
 import InstagramUserInfo from '../components/InstagramUserInfo';
 import {getRedirectUri} from '../services/redirect-service';
+import {setUserId} from '../services/local-storage-service';
 
 let userInfoRef = {
     clientWidth: 0
 };
 
 export default class Instagram extends Component {
-    componentDidMount() {
-        const accessToken = queryString.parse(window.location.hash).instagramAccessToken;
+    constructor(props) {
+        super(props);
 
-        if (accessToken) {
-            this.props.setInstagramAccessToken(accessToken);
-            this.props.setInstagramUser();
-            this.props.setInstagramMedia();
+        this.state = {
+            clientWidth: 0
+        };
+    }
+
+    componentDidMount() {
+        const userId = queryString.parse(window.location.hash).instagramUserId;
+
+        if (userId) {
+            setUserId('instagram', userId);
+            this.props.setInstagramAccessToken(userId);
         }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         const ref = document.getElementById('userInfo');
+
+        if (!prevProps.instagramAccessToken && this.props.instagramAccessToken && !this.props.instagramUser.username) {
+            console.log('here');
+            this.props.setInstagramUser();
+            this.props.setInstagramMedia();
+        }
 
         if (ref && userInfoRef.clientWidth !== ref.clientWidth) {
             userInfoRef = ref;

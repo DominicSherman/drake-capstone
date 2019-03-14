@@ -3,13 +3,15 @@ import queryString from 'query-string';
 import Button from 'react-bootstrap/Button';
 
 import {getRedirectUri} from '../services/redirect-service';
+import {setUserId} from '../services/local-storage-service';
 
 export default class Facebook extends Component {
     componentDidMount() {
-        const accessToken = queryString.parse(window.location.hash).facebookAccessToken;
+        const userId = queryString.parse(window.location.hash).facebookUserId;
 
-        if (accessToken) {
-            this.props.setFacebookAccessToken(accessToken);
+        if (userId) {
+            setUserId('facebook', userId);
+            this.props.setFacebookAccessToken(userId);
         }
     }
 

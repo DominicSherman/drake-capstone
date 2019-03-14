@@ -26,3 +26,4 @@ chrome-user-data
 .firebase
 .env
 .runtimeconfig.json
+config.js

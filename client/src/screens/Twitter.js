@@ -3,13 +3,15 @@ import queryString from 'query-string';
 import Button from 'react-bootstrap/Button';
 
 import {getRedirectUri} from '../services/redirect-service';
+import {setUserId} from '../services/local-storage-service';
 
 export default class Twitter extends Component {
     componentDidMount() {
-        const accessToken = queryString.parse(window.location.hash).twitterAccessToken;
+        const userId = queryString.parse(window.location.hash).twitterUserId;
 
-        if (accessToken) {
-            this.props.setTwitterAccessToken(accessToken);
+        if (userId) {
+            setUserId('twitter', userId);
+            this.props.setTwitterAccessToken(userId);
         }
     }
 

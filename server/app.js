@@ -1,11 +1,12 @@
-require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
 const cors = require('cors');
 const expressSession = require('express-session');
+const uuid = require('uuid');
 
 const {getRedirectUri} = require('./services/url-service');
 const {strategies} = require('./services/strategy-service');
+const {setToken} = require('./services/database-service');
 
 const app = express();
 
@@ -33,7 +34,11 @@ services.forEach((service) => {
     app.get(`/${service}`, passport.authenticate(service));
 
     app.get(`/${service}/callback`, passport.authenticate(service), (req, res) => {
-        res.redirect(`${getRedirectUri()}#${service}AccessToken=${req.authInfo.accessToken}`);
+        const accessToken = req.authInfo.accessToken;
+        const userId = uuid.v4();
+
+        setToken(service, userId, accessToken);
+        res.redirect(`${getRedirectUri()}#${service}UserId=${userId}`);
     });
 });
 

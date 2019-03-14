@@ -1,11 +1,13 @@
 import {INSTAGRAM} from '../constants/view-types';
 
 import {
+    RESET_STATE,
     SET_CURRENT_VIEW,
     SET_FACEBOOK_ACCESS_TOKEN,
     SET_INSTAGRAM_ACCESS_TOKEN,
     SET_INSTAGRAM_MEDIA,
-    SET_INSTAGRAM_USER, SET_TWITTER_ACCESS_TOKEN
+    SET_INSTAGRAM_USER,
+    SET_TWITTER_ACCESS_TOKEN
 } from './actions';
 
 const defaultState = {
@@ -47,7 +49,10 @@ const setCurrentView = (state, currentView) => ({
     currentView
 });
 
+const resetState = () => defaultState;
+
 const reducerMap = {
+    [RESET_STATE]: resetState,
     [SET_CURRENT_VIEW]: setCurrentView,
     [SET_FACEBOOK_ACCESS_TOKEN]: setFacebookAccessToken,
     [SET_INSTAGRAM_ACCESS_TOKEN]: setInstagramAccessToken,
