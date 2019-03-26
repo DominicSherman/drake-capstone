@@ -5,12 +5,11 @@ import styles from '../css/components/InstagramMedia.module.css';
 
 export default class InstagramMedia extends Component {
     render() {
-        const {instagramMedia, userWidth} = this.props;
+        const {instagramMedia} = this.props;
 
         return (
             <div
                 className={styles.wrapper}
-                style={{marginLeft: userWidth}}
             >
                 {instagramMedia.map((post) =>
                     <InstagramEmbed

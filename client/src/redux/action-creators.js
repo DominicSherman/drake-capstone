@@ -2,12 +2,11 @@ import rp from 'request-promise';
 
 import {INSTAGRAM_MEDIA, INSTAGRAM_USER_INFO} from '../constants/endpoints';
 import {getAccessTokenSnapshot} from '../services/firebase-service';
-import {clearStorage, getUserId, removeUserId} from '../services/local-storage-service';
+import {clearStorage, getUserId} from '../services/local-storage-service';
 
 import {action} from './action';
 import {
     RESET_STATE,
-    SET_CURRENT_VIEW,
     SET_FACEBOOK_ACCESS_TOKEN,
     SET_INSTAGRAM_ACCESS_TOKEN,
     SET_INSTAGRAM_MEDIA,
@@ -68,8 +67,6 @@ export const setInstagramMedia = () => async (dispatch, getState) => {
 
     dispatch(action(SET_INSTAGRAM_MEDIA, userMediaResponse.data));
 };
-
-export const setCurrentView = (currentView) => action(SET_CURRENT_VIEW, currentView);
 
 export const tryToLoadCredentials = () => (dispatch) => {
     const instagramUserId = getUserId('instagram');
