@@ -18,6 +18,11 @@ export default class Instagram extends Component {
             setUserId('instagram', userId);
             this.props.setInstagramAccessToken(userId);
         }
+
+        if (this.props.instagramAccessToken && !this.props.instagramUser.username) {
+            this.props.setInstagramUser();
+            this.props.setInstagramMedia();
+        }
     }
 
     componentDidUpdate(prevProps) {
