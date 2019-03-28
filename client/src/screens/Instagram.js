@@ -10,19 +10,7 @@ import InstagramUserInfo from '../components/InstagramUserInfo';
 import {getRedirectUri} from '../services/redirect-service';
 import {setUserId} from '../services/local-storage-service';
 
-let userInfoRef = {
-    clientWidth: 0
-};
-
 export default class Instagram extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            clientWidth: 0
-        };
-    }
-
     componentDidMount() {
         const userId = queryString.parse(window.location.hash).instagramUserId;
 
@@ -33,16 +21,9 @@ export default class Instagram extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const ref = document.getElementById('userInfo');
-
         if (!prevProps.instagramAccessToken && this.props.instagramAccessToken && !this.props.instagramUser.username) {
-            console.log('here');
             this.props.setInstagramUser();
             this.props.setInstagramMedia();
-        }
-
-        if (ref && userInfoRef.clientWidth !== ref.clientWidth) {
-            userInfoRef = ref;
         }
     }
 
@@ -70,14 +51,12 @@ export default class Instagram extends Component {
                     <Col
                         id={'userInfo'}
                         sm={4}
-                        style={{position: 'fixed'}}
                     >
                         <InstagramUserInfo instagramUser={instagramUser} />
                     </Col>
                     <Col>
                         <InstagramMedia
                             instagramMedia={instagramMedia}
-                            userWidth={userInfoRef.clientWidth}
                         />
                     </Col>
                 </Row>

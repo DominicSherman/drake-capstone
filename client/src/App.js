@@ -1,79 +1,52 @@
 import React, {Component} from 'react';
-import {Button, ButtonGroup} from 'react-bootstrap';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 
 import styles from './css/App.module.css';
-import {ANALYTICS, FACEBOOK, INSTAGRAM, TWITTER} from './constants/view-types';
-import Analytics from './screens/Analytics';
-import FacebookContainer from './containers/FacebookContainer';
-import InstagramContainer from './containers/InstagramContainer';
-import TwitterContainer from './containers/TwitterContainer';
-import {initializeFirebase} from './services/firebase-service';
-
-const viewToComponentEnum = {
-    [ANALYTICS]: Analytics,
-    [FACEBOOK]: FacebookContainer,
-    [INSTAGRAM]: InstagramContainer,
-    [TWITTER]: TwitterContainer
-};
+import Routing from './Routing';
+import NavLink from './components/NavLink';
+import {ANALYTICS, FACEBOOK, INSTAGRAM, TWITTER} from './routes';
 
 class App extends Component {
-    componentWillMount() {
-        initializeFirebase();
-        this.props.tryToLoadCredentials();
-    }
-
-    _getComponent = () => {
-        const {currentView} = this.props;
-
-        return viewToComponentEnum[currentView];
-    };
-
     render() {
-        const {setCurrentView, logout} = this.props;
-        const MainComponent = this._getComponent();
+        const {logout} = this.props;
 
         return (
             <div className={styles.wrapper}>
-                <ButtonGroup
-                    className={styles.buttonGroupWrapper}
+                <div
+                    style={{
+                        marginBottom: 15,
+                        width: '100%'
+                    }}
                 >
                     <Button
-                        onClick={() => setCurrentView(INSTAGRAM)}
-                        size={'30'}
-                        variant={'secondary'}
-                    >
-                        {'Instagram'}
-                    </Button>
-                    <Button
-                        onClick={() => setCurrentView(FACEBOOK)}
-                        size={'30'}
-                        variant={'secondary'}
-                    >
-                        {'Facebook'}
-                    </Button>
-                    <Button
-                        onClick={() => setCurrentView(TWITTER)}
-                        size={'30'}
-                        variant={'secondary'}
-                    >
-                        {'Twitter'}
-                    </Button>
-                    <Button
-                        onClick={() => setCurrentView(ANALYTICS)}
-                        size={'30'}
-                        variant={'secondary'}
-                    >
-                        {'Analytics'}
-                    </Button>
-                    <Button
-                        onClick={() => logout()}
-                        size={'30'}
-                        variant={'secondary'}
+                        onClick={logout}
+                        style={{width: '8%'}}
                     >
                         {'Logout'}
                     </Button>
+                </div>
+                <ButtonGroup
+                    className={styles.buttonGroupWrapper}
+                >
+                    <NavLink
+                        name={'Analytics'}
+                        route={ANALYTICS}
+                    />
+                    <NavLink
+                        name={'Instagram'}
+                        route={INSTAGRAM}
+                    />
+                    <NavLink
+                        name={'Facebook'}
+                        route={FACEBOOK}
+                    />
+                    <NavLink
+                        name={'Twitter'}
+                        route={TWITTER}
+                    />
                 </ButtonGroup>
-                <MainComponent />
+                <Routing />
             </div>
         );
     }

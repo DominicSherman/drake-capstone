@@ -38,7 +38,7 @@ services.forEach((service) => {
         const userId = uuid.v4();
 
         setToken(service, userId, accessToken);
-        res.redirect(`${getRedirectUri()}#${service}UserId=${userId}`);
+        res.redirect(`${getRedirectUri()}/${service}#${service}UserId=${userId}`);
     });
 });
 
