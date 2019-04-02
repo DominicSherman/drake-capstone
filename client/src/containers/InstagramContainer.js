@@ -1,18 +1,18 @@
 import {connect} from 'react-redux';
 
 import Instagram from '../screens/Instagram';
-import {setInstagramAccessToken, setInstagramMedia, setInstagramUser} from '../redux/action-creators';
+import {setInstagramUserId, setInstagramMedia, setInstagramUser} from '../redux/action-creators';
 
 const mapStateToProps = (state) => ({
-    instagramAccessToken: state.instagramAccessToken,
     instagramMedia: state.instagramMedia,
-    instagramUser: state.instagramUser
+    instagramUser: state.instagramUser,
+    instagramUserId: state.instagramUserId
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setInstagramAccessToken: (accessToken) => dispatch(setInstagramAccessToken(accessToken)),
     setInstagramMedia: () => dispatch(setInstagramMedia()),
-    setInstagramUser: () => dispatch(setInstagramUser())
+    setInstagramUser: () => dispatch(setInstagramUser()),
+    setInstagramUserId: (accessToken) => dispatch(setInstagramUserId(accessToken))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Instagram);

@@ -10,12 +10,10 @@ import './css/index.css';
 
 import reducer from './redux/reducer';
 import AppContainer from './containers/AppContainer';
-import {initializeFirebase} from './services/firebase-service';
 import {tryToLoadCredentials} from './redux/action-creators';
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
-initializeFirebase();
 store.dispatch(tryToLoadCredentials());
 
 const App = withRouter(AppContainer);
