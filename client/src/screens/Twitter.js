@@ -46,7 +46,23 @@ export default class Twitter extends Component {
         }
 
         return (
-            <div>{'LOGGED IN TO TWITTER'}</div>
+            <Container
+                fluid
+            >
+                <Row>
+                    <Col
+                        id={'userInfo'}
+                        sm={4}
+                    >
+                        <TwitterUserInfo twitterUser={twitterUser} />
+                    </Col>
+                    <Col>
+                        <TwitterMedia
+                            twitterMedia={twitterMedia}
+                        />
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
