@@ -16,20 +16,20 @@ export default class Twitter extends Component {
 
         if (userId) {
             setUserId('twitter', userId);
-            this.props.setTwitterAccessToken(userId);
+            this.props.setTwitterUserId(userId);
         }
     }
 
     render() {
         const {
-            twitterAccessToken,
+            twitterUserId,
             twitterUser,
             twitterMedia,
             setTwitterUser,
             setTwitterMedia
         } = this.props;
 
-        if (!twitterAccessToken) {
+        if (!twitterUserId) {
             return (
                 <Button
                     onClick={() => {
@@ -42,7 +42,7 @@ export default class Twitter extends Component {
             );
         } else if (!twitterUser.username) {
             setTwitterUser();
-            // setTwitterMedia();
+            setTwitterMedia();
         }
 
         return (

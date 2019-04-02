@@ -57,13 +57,15 @@ export const setInstagramMedia = () => async (dispatch, getState) => {
 export const setTwitterUser = () => async (dispatch, getState) => {
     const userId = getState().twitterUserId;
 
-    const userInfoResponse = await rp({
+    const user = await rp({
         json: true,
         qs: {userId},
         uri: TWITTER_USER_INFO
     });
 
-    dispatch(action(SET_TWITTER_USER, userInfoResponse.data));
+    console.log('user', user);
+
+    dispatch(action(SET_TWITTER_USER, user));
 };
 
 export const setTwitterMedia = () => async (dispatch, getState) => {

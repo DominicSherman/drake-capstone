@@ -6,7 +6,6 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 const {getCallbackUri} = require('./url-service');
 
 const verifyFunction = (accessToken, refreshToken, profile, done) => {
-    console.log('profile', profile);
     done(null, profile, {accessToken});
 };
 
