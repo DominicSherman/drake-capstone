@@ -8,30 +8,26 @@ import queryString from 'query-string';
 import InstagramMedia from '../components/InstagramMedia';
 import InstagramUserInfo from '../components/InstagramUserInfo';
 import {getRedirectUri} from '../services/redirect-service';
-import {setUserId} from '../services/local-storage-service';
 
 export default class Instagram extends Component {
     componentDidMount() {
         const userId = queryString.parse(window.location.hash).instagramUserId;
 
         if (userId) {
-            setUserId('instagram', userId);
-            this.props.setInstagramAccessToken(userId);
+            this.props.setInstagramUserId('instagram', userId);
         }
     }
 
     render() {
         const {
-            instagramAccessToken,
+            instagramUserId,
             instagramUser,
             instagramMedia,
             setInstagramUser,
             setInstagramMedia
         } = this.props;
 
-        console.log('instagramUser', instagramUser);
-
-        if (!instagramAccessToken) {
+        if (!instagramUserId) {
             return (
                 <Button
                     onClick={() => {
@@ -44,7 +40,7 @@ export default class Instagram extends Component {
             );
         } else if (!instagramUser.username) {
             setInstagramUser();
-            setInstagramMedia();
+            // setInstagramMedia();
         }
 
         return (

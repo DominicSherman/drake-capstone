@@ -1,27 +1,27 @@
 import {
     RESET_STATE,
-    SET_FACEBOOK_ACCESS_TOKEN,
-    SET_INSTAGRAM_ACCESS_TOKEN,
+    SET_FACEBOOK_USER_ID,
+    SET_INSTAGRAM_USER_ID,
     SET_INSTAGRAM_MEDIA,
     SET_INSTAGRAM_USER,
-    SET_TWITTER_ACCESS_TOKEN,
+    SET_TWITTER_USER_ID,
     SET_TWITTER_MEDIA,
     SET_TWITTER_USER
 } from './actions';
 
 const defaultState = {
-    facebookAccessToken: null,
-    instagramAccessToken: null,
+    facebookUserId: null,
+    instagramUserId: null,
     instagramMedia: [],
     instagramUser: {},
-    twitterAccessToken: null,
+    twitterUserId: null,
     twitterMedia: [],
     twitterUser: {}
 };
 
-const setInstagramAccessToken = (state, instagramAccessToken) => ({
+const setInstagramUserId = (state, instagramUserId) => ({
     ...state,
-    instagramAccessToken
+    instagramUserId
 });
 
 const setInstagramMedia = (state, instagramMedia) => ({
@@ -34,14 +34,14 @@ const setInstagramUser = (state, instagramUser) => ({
     instagramUser
 });
 
-const setFacebookAccessToken = (state, facebookAccessToken) => ({
+const setFacebookUserId = (state, facebookUserId) => ({
     ...state,
-    facebookAccessToken
+    facebookUserId
 });
 
-const setTwitterAccessToken = (state, twitterAccessToken) => ({
+const setTwitterUserId = (state, twitterUserId) => ({
     ...state,
-    twitterAccessToken
+    twitterUserId
 });
 
 const setTwitterUser = (state, twitterUser) => ({
@@ -58,11 +58,11 @@ const resetState = () => defaultState;
 
 const reducerMap = {
     [RESET_STATE]: resetState,
-    [SET_FACEBOOK_ACCESS_TOKEN]: setFacebookAccessToken,
-    [SET_INSTAGRAM_ACCESS_TOKEN]: setInstagramAccessToken,
+    [SET_FACEBOOK_USER_ID]: setFacebookUserId,
+    [SET_INSTAGRAM_USER_ID]: setInstagramUserId,
     [SET_INSTAGRAM_MEDIA]: setInstagramMedia,
     [SET_INSTAGRAM_USER]: setInstagramUser,
-    [SET_TWITTER_ACCESS_TOKEN]: setTwitterAccessToken,
+    [SET_TWITTER_USER_ID]: setTwitterUserId,
     [SET_TWITTER_USER]: setTwitterUser,
     [SET_TWITTER_MEDIA]: setTwitterMedia
 };

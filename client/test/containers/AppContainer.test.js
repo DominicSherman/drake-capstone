@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import {chance} from '../chance';
-import {setInstagramAccessToken, setInstagramMedia, setInstagramUser} from '../../src/redux/action-creators';
+import {setInstagramUserId, setInstagramMedia, setInstagramUser} from '../../src/redux/action-creators';
 
 jest.mock('redux');
 jest.mock('../../src/App');
@@ -49,8 +49,8 @@ describe('AppContainer', () => {
             actualProps.setAccessToken(expectedAccessToken);
 
             expect(dispatchSpy).toHaveBeenCalledTimes(1);
-            expect(setInstagramAccessToken).toHaveBeenCalledTimes(1);
-            expect(setInstagramAccessToken).toHaveBeenCalledWith(expectedAccessToken);
+            expect(setInstagramUserId).toHaveBeenCalledTimes(1);
+            expect(setInstagramUserId).toHaveBeenCalledWith(expectedAccessToken);
         });
 
         it('should pass setInstagramMedia', () => {

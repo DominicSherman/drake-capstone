@@ -1,70 +1,53 @@
 import rp from 'request-promise';
 
-import {INSTAGRAM_MEDIA, INSTAGRAM_USER_INFO, TWITTER_USER_INFO, TWITTER_MEDIA} from '../constants/endpoints';
-import {getAccessTokenSnapshot} from '../services/firebase-service';
-import {clearStorage, getUserId} from '../services/local-storage-service';
+import {INSTAGRAM_MEDIA, INSTAGRAM_USER_INFO, TWITTER_MEDIA, TWITTER_USER_INFO} from '../constants/endpoints';
+import {clearStorage, getUserId, setUserId} from '../services/local-storage-service';
 
 import {action} from './action';
 import {
     RESET_STATE,
-    SET_FACEBOOK_ACCESS_TOKEN,
-    SET_INSTAGRAM_ACCESS_TOKEN,
+    SET_FACEBOOK_USER_ID,
     SET_INSTAGRAM_MEDIA,
     SET_INSTAGRAM_USER,
-    SET_TWITTER_ACCESS_TOKEN,
+    SET_INSTAGRAM_USER_ID,
+    SET_TWITTER_MEDIA,
     SET_TWITTER_USER,
-    SET_TWITTER_MEDIA
+    SET_TWITTER_USER_ID
 } from './actions';
 
-export const setInstagramAccessToken = (userId) => async (dispatch) => {
-    await getAccessTokenSnapshot('instagram', userId).then((snapshot) => {
-        snapshot.forEach((doc) => {
-            if (doc.id === 'instagram') {
-                dispatch(action(SET_INSTAGRAM_ACCESS_TOKEN, doc.data().accessToken));
-            }
-        });
-    });
+export const setInstagramUserId = (userId) => (dispatch) => {
+    setUserId('instagram', userId);
+    dispatch(action(SET_INSTAGRAM_USER_ID, userId));
 };
 
-export const setFacebookAccessToken = (userId) => async (dispatch) => {
-    await getAccessTokenSnapshot('facebook', userId).then((snapshot) => {
-        snapshot.forEach((doc) => {
-            if (doc.id === 'facebook') {
-                dispatch(action(SET_FACEBOOK_ACCESS_TOKEN, doc.data().accessToken));
-            }
-        });
-    });
+export const setFacebookUserId = (userId) => (dispatch) => {
+    setUserId('facebook', userId);
+    dispatch(action(SET_FACEBOOK_USER_ID, userId));
 };
 
-export const setTwitterAccessToken = (userId) => async (dispatch) => {
-    await getAccessTokenSnapshot('twitter', userId).then((snapshot) => {
-        snapshot.forEach((doc) => {
-            if (doc.id === 'twitter') {
-                dispatch(action(SET_TWITTER_ACCESS_TOKEN, doc.data().accessToken));
-            }
-        });
-    });
+export const setTwitterUserId = (userId) => (dispatch) => {
+    setUserId('twitter', userId);
+    dispatch(action(SET_TWITTER_USER_ID, userId));
 };
 
 export const setInstagramUser = () => async (dispatch, getState) => {
-    const access_token = getState().instagramAccessToken;
+    const userId = getState().instagramUserId;
 
     const userInfoResponse = await rp({
         json: true,
-        qs: {access_token},
+        qs: {userId},
         uri: INSTAGRAM_USER_INFO
     });
-    console.log('userInfoResponse', userInfoResponse);
 
     dispatch(action(SET_INSTAGRAM_USER, userInfoResponse.data));
 };
 
 export const setInstagramMedia = () => async (dispatch, getState) => {
-    const access_token = getState().instagramAccessToken;
+    const userId = getState().instagramUserId;
 
     const userMediaResponse = await rp({
         json: true,
-        qs: {access_token},
+        qs: {userId},
         uri: INSTAGRAM_MEDIA
     });
 
@@ -72,11 +55,11 @@ export const setInstagramMedia = () => async (dispatch, getState) => {
 };
 
 export const setTwitterUser = () => async (dispatch, getState) => {
-    const accessToken = getState().twitterAccessToken;
+    const userId = getState().twitterUserId;
 
     const userInfoResponse = await rp({
         json: true,
-        qs: {accessToken},
+        qs: {userId},
         uri: TWITTER_USER_INFO
     });
 
@@ -84,11 +67,11 @@ export const setTwitterUser = () => async (dispatch, getState) => {
 };
 
 export const setTwitterMedia = () => async (dispatch, getState) => {
-    const access_token = getState().twitterAccessToken;
+    const userId = getState().twitterUserId;
 
     const userMediaResponse = await rp({
         json: true,
-        qs: {access_token},
+        qs: {userId},
         uri: TWITTER_MEDIA
     });
 
@@ -101,15 +84,15 @@ export const tryToLoadCredentials = () => (dispatch) => {
     const twitterUserId = getUserId('twitter');
 
     if (instagramUserId) {
-        dispatch(setInstagramAccessToken(instagramUserId));
+        dispatch(setInstagramUserId(instagramUserId));
     }
 
     if (facebookUserId) {
-        dispatch(setFacebookAccessToken(facebookUserId));
+        dispatch(setFacebookUserId(facebookUserId));
     }
 
     if (twitterUserId) {
-        dispatch(setTwitterAccessToken(twitterUserId));
+        dispatch(setTwitterUserId(twitterUserId));
     }
 };
 

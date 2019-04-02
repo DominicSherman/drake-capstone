@@ -7,8 +7,8 @@ const request = require('request');
 
 const {getRedirectUri} = require('./services/url-service');
 const {strategies} = require('./services/strategy-service');
-const {setToken} = require('./services/database-service');
-const {TWITTER_USER_INFO} = require('./endpoints');
+const {setToken, getUserSnapshot} = require('./services/database-service');
+const {INSTAGRAM_USER_INFO, TWITTER_USER_INFO} = require('./endpoints');
 
 const app = express();
 
@@ -39,8 +39,22 @@ services.forEach((service) => {
         const accessToken = req.authInfo.accessToken;
         const userId = uuid.v4();
 
+        console.log('userId', userId);
+
         setToken(service, userId, accessToken);
         res.redirect(`${getRedirectUri()}/${service}#${service}UserId=${userId}`);
+    });
+});
+
+app.get('/instagram/user', async (req, res) => {
+    await getUserSnapshot(req.query.userId, 'instagram').then((snapshot) => {
+        console.log('snapshot', snapshot);
+        console.log('snapshot.data()', snapshot.data());
+        console.log('snapshot.length', snapshot.length);
+        console.log('snapshot.exists', snapshot.exists);
+        for (let i = 0; i < snapshot.length; i++) {
+            console.log('snapshot[i]', snapshot[i]);
+        }
     });
 });
 

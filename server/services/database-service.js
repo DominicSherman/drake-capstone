@@ -9,6 +9,9 @@ const setToken = (service, userId, accessToken) => db.collection(userId).doc(ser
     accessToken
 });
 
+const getUserSnapshot = (userId, service) => db.collection(userId).doc(service).get();
+
 module.exports = {
+    getUserSnapshot,
     setToken
 };

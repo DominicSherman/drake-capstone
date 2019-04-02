@@ -2,7 +2,7 @@ import {chance} from '../chance';
 import reducer from '../../src/redux/reducer';
 import {
     SET_CURRENT_VIEW,
-    SET_INSTAGRAM_ACCESS_TOKEN,
+    SET_INSTAGRAM_USER_ID,
     SET_INSTAGRAM_MEDIA,
     SET_INSTAGRAM_USER
 } from '../../src/redux/actions';
@@ -36,7 +36,7 @@ describe('reducer', () => {
         expect(actualState).toEqual(defaultState);
     });
 
-    it('should set instagramAccessToken when the action is SET_INSTAGRAM_ACCESS_TOKEN', () => {
+    it('should set instagramAccessToken when the action is SET_INSTAGRAM_USER_ID', () => {
         const originalState = {
             [chance.string()]: chance.string(),
             instagramAccessToken: chance.bool()
@@ -45,7 +45,7 @@ describe('reducer', () => {
         const expectedData = chance.bool();
         const action = {
             data: expectedData,
-            type: SET_INSTAGRAM_ACCESS_TOKEN
+            type: SET_INSTAGRAM_USER_ID
         };
 
         const actualState = reducer(originalState, action);
