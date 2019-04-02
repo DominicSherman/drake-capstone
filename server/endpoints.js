@@ -8,5 +8,7 @@ const TWITTER_USER_INFO = `${TWITTER_URL}/users/show.json`;
 const TWITTER_MEDIA = `${TWITTER_URL}/statuses/show.json`;
 
 module.exports = {
+    INSTAGRAM_MEDIA,
+    INSTAGRAM_USER_INFO,
     TWITTER_USER_INFO
 };

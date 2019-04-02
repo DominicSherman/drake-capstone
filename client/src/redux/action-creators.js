@@ -33,25 +33,25 @@ export const setTwitterUserId = (userId) => (dispatch) => {
 export const setInstagramUser = () => async (dispatch, getState) => {
     const userId = getState().instagramUserId;
 
-    const userInfoResponse = await rp({
+    const user = await rp({
         json: true,
         qs: {userId},
         uri: INSTAGRAM_USER_INFO
     });
 
-    dispatch(action(SET_INSTAGRAM_USER, userInfoResponse.data));
+    dispatch(action(SET_INSTAGRAM_USER, user));
 };
 
 export const setInstagramMedia = () => async (dispatch, getState) => {
     const userId = getState().instagramUserId;
 
-    const userMediaResponse = await rp({
+    const userMedia = await rp({
         json: true,
         qs: {userId},
         uri: INSTAGRAM_MEDIA
     });
 
-    dispatch(action(SET_INSTAGRAM_MEDIA, userMediaResponse.data));
+    dispatch(action(SET_INSTAGRAM_MEDIA, userMedia));
 };
 
 export const setTwitterUser = () => async (dispatch, getState) => {

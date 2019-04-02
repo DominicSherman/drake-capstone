@@ -14,7 +14,7 @@ export default class Instagram extends Component {
         const userId = queryString.parse(window.location.hash).instagramUserId;
 
         if (userId) {
-            this.props.setInstagramUserId('instagram', userId);
+            this.props.setInstagramUserId(userId);
         }
     }
 
@@ -40,7 +40,7 @@ export default class Instagram extends Component {
             );
         } else if (!instagramUser.username) {
             setInstagramUser();
-            // setInstagramMedia();
+            setInstagramMedia();
         }
 
         return (
