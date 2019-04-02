@@ -1,6 +1,6 @@
 import rp from 'request-promise';
 
-import {INSTAGRAM_MEDIA, INSTAGRAM_USER_INFO} from '../constants/endpoints';
+import {INSTAGRAM_MEDIA, INSTAGRAM_USER_INFO, TWITTER_USER_INFO, TWITTER_MEDIA} from '../constants/endpoints';
 import {getAccessTokenSnapshot} from '../services/firebase-service';
 import {clearStorage, getUserId} from '../services/local-storage-service';
 
@@ -11,7 +11,9 @@ import {
     SET_INSTAGRAM_ACCESS_TOKEN,
     SET_INSTAGRAM_MEDIA,
     SET_INSTAGRAM_USER,
-    SET_TWITTER_ACCESS_TOKEN
+    SET_TWITTER_ACCESS_TOKEN,
+    SET_TWITTER_USER,
+    SET_TWITTER_MEDIA
 } from './actions';
 
 export const setInstagramAccessToken = (userId) => async (dispatch) => {
@@ -66,6 +68,30 @@ export const setInstagramMedia = () => async (dispatch, getState) => {
     });
 
     dispatch(action(SET_INSTAGRAM_MEDIA, userMediaResponse.data));
+};
+
+export const setTwitterUser = () => async (dispatch, getState) => {
+    const access_token = getState().twitterAccessToken;
+
+    const userInfoResponse = await rp({
+        json: true,
+        qs: {access_token},
+        uri: TWITTER_USER_INFO
+    });
+
+    dispatch(action(SET_TWITTER_USER, userInfoResponse.data));
+};
+
+export const setTwitterMedia = () => async (dispatch, getState) => {
+    const access_token = getState().twitterAccessToken;
+
+    const userMediaResponse = await rp({
+        json: true,
+        qs: {access_token},
+        uri: TWITTER_MEDIA
+    });
+
+    dispatch(action(SET_TWITTER_MEDIA, userMediaResponse.data));
 };
 
 export const tryToLoadCredentials = () => (dispatch) => {
