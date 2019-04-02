@@ -54,6 +54,7 @@ export const setInstagramUser = () => async (dispatch, getState) => {
         qs: {access_token},
         uri: INSTAGRAM_USER_INFO
     });
+    console.log('userInfoResponse', userInfoResponse);
 
     dispatch(action(SET_INSTAGRAM_USER, userInfoResponse.data));
 };
@@ -71,11 +72,11 @@ export const setInstagramMedia = () => async (dispatch, getState) => {
 };
 
 export const setTwitterUser = () => async (dispatch, getState) => {
-    const access_token = getState().twitterAccessToken;
+    const accessToken = getState().twitterAccessToken;
 
     const userInfoResponse = await rp({
         json: true,
-        qs: {access_token},
+        qs: {accessToken},
         uri: TWITTER_USER_INFO
     });
 

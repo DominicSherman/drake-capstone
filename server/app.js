@@ -3,10 +3,12 @@ const passport = require('passport');
 const cors = require('cors');
 const expressSession = require('express-session');
 const uuid = require('uuid');
+const request = require('request');
 
 const {getRedirectUri} = require('./services/url-service');
 const {strategies} = require('./services/strategy-service');
 const {setToken} = require('./services/database-service');
+const {TWITTER_USER_INFO} = require('./endpoints');
 
 const app = express();
 
@@ -40,6 +42,18 @@ services.forEach((service) => {
         setToken(service, userId, accessToken);
         res.redirect(`${getRedirectUri()}/${service}#${service}UserId=${userId}`);
     });
+});
+
+app.get('/twitter/user', async (req, res) => {
+    const response = await request({
+        json: true,
+        qs: {
+            access_token: req.params.accessToken
+        },
+        uri: TWITTER_USER_INFO
+    });
+
+    console.log('response.data', response.data);
 });
 
 module.exports = app;

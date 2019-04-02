@@ -42,7 +42,7 @@ export default class Twitter extends Component {
             );
         } else if (!twitterUser.username) {
             setTwitterUser();
-            setTwitterMedia();
+            // setTwitterMedia();
         }
 
         return (

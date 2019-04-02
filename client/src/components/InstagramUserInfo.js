@@ -7,9 +7,13 @@ export default class InstagramUserInfo extends Component {
     render() {
         const {instagramUser} = this.props;
 
+        console.log('instagramUser', instagramUser);
+
         if (!instagramUser.id) {
             return null;
         }
+
+        console.log('instagramUser', instagramUser);
 
         return (
             <div className={styles.wrapper}>
