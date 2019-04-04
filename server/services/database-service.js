@@ -5,10 +5,14 @@ admin.initializeApp(functions.config().firebase);
 
 const db = admin.firestore();
 
-const setToken = (service, userId, accessToken) => db.collection(userId).doc(service).set({
-    accessToken
+const setUserData = (service, userId, accessToken, username) => db.collection(userId).doc(service).set({
+    accessToken,
+    username
 });
 
+const getUserSnapshot = (userId, service) => db.collection(userId).doc(service).get();
+
 module.exports = {
-    setToken
+    getUserSnapshot,
+    setUserData
 };

@@ -1,9 +1,9 @@
 import rp from 'request-promise';
 
 import {chance} from '../chance';
-import {setInstagramAccessToken, setInstagramMedia, setInstagramUser} from '../../src/redux/action-creators';
+import {setInstagramUserId, setInstagramMedia, setInstagramUser} from '../../src/redux/action-creators';
 import {action} from '../../src/redux/action';
-import {SET_INSTAGRAM_ACCESS_TOKEN, SET_INSTAGRAM_MEDIA, SET_INSTAGRAM_USER} from '../../src/redux/actions';
+import {SET_INSTAGRAM_USER_ID, SET_INSTAGRAM_MEDIA, SET_INSTAGRAM_USER} from '../../src/redux/actions';
 import {INSTAGRAM_MEDIA, INSTAGRAM_USER_INFO} from '../../src/constants/endpoints';
 
 jest.mock('request-promise');
@@ -26,12 +26,12 @@ describe('action-creators', () => {
         jest.resetAllMocks();
     });
 
-    describe('setInstagramAccessToken', () => {
+    describe('setInstagramUserId', () => {
         it('should return the correct action', () => {
             const expectedAccessToken = chance.string();
-            const actualValue = setInstagramAccessToken(expectedAccessToken);
+            const actualValue = setInstagramUserId(expectedAccessToken);
 
-            expect(actualValue).toEqual(action(SET_INSTAGRAM_ACCESS_TOKEN, expectedAccessToken));
+            expect(actualValue).toEqual(action(SET_INSTAGRAM_USER_ID, expectedAccessToken));
         });
     });
 

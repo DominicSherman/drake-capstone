@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
-import queryString from 'query-string';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import queryString from 'query-string';
 
+import TwitterMedia from '../components/TwitterMedia';
+import TwitterUserInfo from '../components/TwitterUserInfo';
 import {getRedirectUri} from '../services/redirect-service';
 import {setUserId} from '../services/local-storage-service';
 
@@ -11,14 +16,20 @@ export default class Twitter extends Component {
 
         if (userId) {
             setUserId('twitter', userId);
-            this.props.setTwitterAccessToken(userId);
+            this.props.setTwitterUserId(userId);
         }
     }
 
     render() {
-        const {twitterAccessToken} = this.props;
+        const {
+            twitterUserId,
+            twitterUser,
+            twitterMedia,
+            setTwitterUser,
+            setTwitterMedia
+        } = this.props;
 
-        if (!twitterAccessToken) {
+        if (!twitterUserId) {
             return (
                 <Button
                     onClick={() => {
@@ -29,10 +40,29 @@ export default class Twitter extends Component {
                     {'Log in to Twitter'}
                 </Button>
             );
+        } else if (!twitterUser.username) {
+            setTwitterUser();
+            setTwitterMedia();
         }
 
         return (
-            <div>{'LOGGED IN TO TWITTER'}</div>
+            <Container
+                fluid
+            >
+                <Row>
+                    <Col
+                        id={'userInfo'}
+                        sm={4}
+                    >
+                        <TwitterUserInfo twitterUser={twitterUser} />
+                    </Col>
+                    <Col>
+                        <TwitterMedia
+                            twitterMedia={twitterMedia}
+                        />
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
