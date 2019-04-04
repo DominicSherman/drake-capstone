@@ -1,11 +1,17 @@
 import rp from 'request-promise';
 
-import {INSTAGRAM_MEDIA, INSTAGRAM_USER_INFO, TWITTER_MEDIA, TWITTER_USER_INFO} from '../constants/endpoints';
+import {
+    FACEBOOK_USER_INFO,
+    INSTAGRAM_MEDIA,
+    INSTAGRAM_USER_INFO,
+    TWITTER_MEDIA,
+    TWITTER_USER_INFO
+} from '../constants/endpoints';
 import {clearStorage, getUserId, setUserId} from '../services/local-storage-service';
 
 import {action} from './action';
 import {
-    RESET_STATE,
+    RESET_STATE, SET_FACEBOOK_USER,
     SET_FACEBOOK_USER_ID,
     SET_INSTAGRAM_MEDIA,
     SET_INSTAGRAM_USER,
@@ -63,8 +69,6 @@ export const setTwitterUser = () => async (dispatch, getState) => {
         uri: TWITTER_USER_INFO
     });
 
-    console.log('user', user);
-
     dispatch(action(SET_TWITTER_USER, user));
 };
 
@@ -78,6 +82,18 @@ export const setTwitterMedia = () => async (dispatch, getState) => {
     });
 
     dispatch(action(SET_TWITTER_MEDIA, userMediaResponse.data));
+};
+
+export const setFacebookUser = () => async (dispatch, getState) => {
+    const userId = getState().facebookUserId;
+
+    const user = await rp({
+        json: true,
+        qs: {userId},
+        uri: FACEBOOK_USER_INFO
+    });
+
+    dispatch(action(SET_FACEBOOK_USER, user));
 };
 
 export const tryToLoadCredentials = () => (dispatch) => {

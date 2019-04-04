@@ -5,8 +5,9 @@ admin.initializeApp(functions.config().firebase);
 
 const db = admin.firestore();
 
-const setUserData = (service, userId, accessToken, username) => db.collection(userId).doc(service).set({
+const setUserData = (service, userId, accessToken, username, id) => db.collection(userId).doc(service).set({
     accessToken,
+    id,
     username
 });
 

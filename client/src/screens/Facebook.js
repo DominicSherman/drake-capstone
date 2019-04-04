@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import queryString from 'query-string';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import {getRedirectUri} from '../services/redirect-service';
 import {setUserId} from '../services/local-storage-service';
+import FacebookUserInfo from '../components/FacebookUserInfo';
 
 export default class Facebook extends Component {
     componentDidMount() {
@@ -11,14 +15,18 @@ export default class Facebook extends Component {
 
         if (userId) {
             setUserId('facebook', userId);
-            this.props.setFacebookAccessToken(userId);
+            this.props.setFacebookUserId(userId);
         }
     }
 
     render() {
-        const {facebookAccessToken} = this.props;
+        const {
+            facebookUserId,
+            facebookUser,
+            setFacebookUser
+        } = this.props;
 
-        if (!facebookAccessToken) {
+        if (!facebookUserId) {
             return (
                 <Button
                     onClick={() => {
@@ -29,10 +37,23 @@ export default class Facebook extends Component {
                     {'Log in to Facebook'}
                 </Button>
             );
+        } else if (!facebookUser.name) {
+            setFacebookUser();
         }
 
         return (
-            <div>{'LOGGED IN TO FACEBOOK'}</div>
+            <Container
+                fluid
+            >
+                <Row>
+                    <Col
+                        id={'userInfo'}
+                        sm={4}
+                    >
+                        <FacebookUserInfo facebookUser={facebookUser} />
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
