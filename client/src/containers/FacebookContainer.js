@@ -1,14 +1,16 @@
 import {connect} from 'react-redux';
 
 import Facebook from '../screens/Facebook';
-import {setFacebookUserId} from '../redux/action-creators';
+import {setFacebookUser, setFacebookUserId} from '../redux/action-creators';
 
 const mapStateToProps = (state) => ({
-    facebookAccessToken: state.facebookAccessToken
+    facebookUser: state.facebookUser,
+    facebookUserId: state.facebookUserId
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setFacebookAccessToken: (accessToken) => dispatch(setFacebookUserId(accessToken))
+    setFacebookUser: () => dispatch(setFacebookUser()),
+    setFacebookUserId: (userId) => dispatch(setFacebookUserId(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Facebook);

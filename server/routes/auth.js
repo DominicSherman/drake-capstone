@@ -25,10 +25,11 @@ services.forEach((service) => {
 
     app.get(`/${service}/callback`, passport.authenticate(service), (req, res) => {
         const {accessToken} = req.authInfo;
-        const {username} = req.user;
+        const {username, displayName, id} = req.user;
+        const name = username ? username : displayName;
         const userId = uuid.v4();
 
-        setUserData(service, userId, accessToken, username);
+        setUserData(service, userId, accessToken, name, id);
         res.redirect(`${getRedirectUri()}/${service}#${service}UserId=${userId}`);
     });
 });

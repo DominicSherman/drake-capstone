@@ -9,9 +9,5 @@
     "start:client": "cd client && yarn start",
     "build": "node client/scripts/build.js",
     "deploy": "cd client && yarn deploy && cd ../server && yarn deploy"
-  },
-  "dependencies": {
-    "query-string": "^6.4.2",
-    "react-twitter-embed": "^2.0.7"
   }
 }
