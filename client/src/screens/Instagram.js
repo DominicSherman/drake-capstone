@@ -27,6 +27,9 @@ export default class Instagram extends Component {
             setInstagramMedia
         } = this.props;
 
+        console.log('instagramUser', instagramUser);
+        console.log('instagramMedia', instagramMedia);
+
         if (!instagramUserId) {
             return (
                 <Button
