@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 
 import styles from '../css/components/TwitterUserInfo.module.css';
-import twitterLogo from '../assets/Twitter-Logo-PNG-1.png';
+import twitterLogo from '../assets/twitter-logo.png';
 
 export default class TwitterUserInfo extends Component {
     render() {
         const {twitterUser} = this.props;
-
-        if (!twitterUser.id) {
-            return null;
-        }
 
         return (
             <div className={styles.wrapper}>

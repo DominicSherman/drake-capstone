@@ -7,10 +7,6 @@ export default class FacebookUserInfo extends Component {
     render() {
         const {facebookUser} = this.props;
 
-        if (!facebookUser.id) {
-            return null;
-        }
-
         return (
             <div className={styles.wrapper}>
                 <img

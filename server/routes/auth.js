@@ -1,11 +1,21 @@
 const passport = require('passport');
 const uuid = require('uuid');
+const express = require('express');
+const expressSession = require('express-session');
+const cors = require('cors');
 
 const {getRedirectUri} = require('../services/url-service');
 const {strategies} = require('../services/strategy-service');
 const {setUserData} = require('../services/database-service');
-const {app} = require('../app');
 
+const app = express();
+
+app.use(expressSession({
+    resave: true,
+    saveUninitialized: true,
+    secret: 'keyboard cat'
+}));
+app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
 

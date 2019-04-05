@@ -7,7 +7,7 @@ import Routing from './Routing';
 import NavLink from './components/NavLink';
 import {ANALYTICS, FACEBOOK, INSTAGRAM, TWITTER} from './routes';
 
-class App extends Component {
+export default class App extends Component {
     render() {
         const {logout} = this.props;
 
@@ -51,5 +51,3 @@ class App extends Component {
         );
     }
 }
-
-export default App;

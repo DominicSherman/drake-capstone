@@ -2,10 +2,12 @@ const rp = require('request-promise');
 const express = require('express');
 const cors = require('cors');
 
-const app = express();
-app.use(cors());
 const {getUserSnapshot} = require('../services/database-service');
-const {INSTAGRAM_USER_INFO, INSTAGRAM_MEDIA} = require('../endpoints');
+const {INSTAGRAM_USER_INFO, INSTAGRAM_MEDIA} = require('../constants/endpoints');
+
+const app = express();
+
+app.use(cors());
 
 app.get('/user', (req, res) =>
     getUserSnapshot(req.query.userId, 'instagram')

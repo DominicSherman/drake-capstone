@@ -2,12 +2,11 @@ import React, {Component} from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import queryString from 'query-string';
 
 import InstagramMedia from '../components/InstagramMedia';
 import InstagramUserInfo from '../components/InstagramUserInfo';
-import {getRedirectUri} from '../services/redirect-service';
+import LoginButton from '../components/LoginButton';
 
 export default class Instagram extends Component {
     componentDidMount() {
@@ -27,23 +26,15 @@ export default class Instagram extends Component {
             setInstagramMedia
         } = this.props;
 
-        console.log('instagramUser', instagramUser);
-        console.log('instagramMedia', instagramMedia);
-
         if (!instagramUserId) {
             return (
-                <Button
-                    onClick={() => {
-                        window.location.href = getRedirectUri('instagram');
-                    }}
-                    variant="dark"
-                >
-                    {'Log in to Instagram'}
-                </Button>
+                <LoginButton service={'instagram'} />
             );
         } else if (!instagramUser.username) {
             setInstagramUser();
             setInstagramMedia();
+
+            return null;
         }
 
         return (
