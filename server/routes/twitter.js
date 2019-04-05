@@ -12,7 +12,7 @@ const {TWITTER_USER_INFO, TWITTER_MEDIA} = require('../endpoints');
 
 app.get('/user', (req, res) =>
     getUserSnapshot(req.query.userId, 'twitter')
-        .then((doc) => {
+        .then(async (doc) => {
             const {
                 accessToken,
                 tokenSecret,
@@ -25,6 +25,10 @@ app.get('/user', (req, res) =>
                 consumer_key: functions.config().twitter.client_id,
                 consumer_secret: functions.config().twitter.client_secret
             });
+
+            const profilePicture = await rp(`https://twitter.com/(${username})/profile_image?size=original`);
+
+            console.log('profilePicture', profilePicture);
 
             client.get(TWITTER_USER_INFO, {screen_name: username}, (error, data) => {
                 if (error) {
