@@ -69,6 +69,8 @@ export const setTwitterUser = () => async (dispatch, getState) => {
         uri: TWITTER_USER_INFO
     });
 
+    console.log('user', user);
+
     dispatch(action(SET_TWITTER_USER, user));
 };
 

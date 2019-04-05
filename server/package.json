@@ -4,11 +4,13 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "firebase-admin": "^7.0.0",
     "firebase-functions": "^2.2.0",
+    "hmacsha1": "^1.0.0",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
     "passport-instagram": "^1.0.0",
