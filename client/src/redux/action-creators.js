@@ -72,18 +72,6 @@ export const setTwitterUser = () => async (dispatch, getState) => {
     dispatch(action(SET_TWITTER_USER, user));
 };
 
-export const setTwitterMedia = () => async (dispatch, getState) => {
-    const userId = getState().twitterUserId;
-
-    const userMediaResponse = await rp({
-        json: true,
-        qs: {userId},
-        uri: TWITTER_MEDIA
-    });
-
-    dispatch(action(SET_TWITTER_MEDIA, userMediaResponse.data));
-};
-
 export const setFacebookUser = () => async (dispatch, getState) => {
     const userId = getState().facebookUserId;
 

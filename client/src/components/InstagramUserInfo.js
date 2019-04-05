@@ -24,7 +24,7 @@ export default class InstagramUserInfo extends Component {
                     src={instagramUser.profile_picture}
                 />
                 <p>{instagramUser.username}</p>
-                <p>{`Bio: "${instagramUser.bio}"`}</p>
+                <p>{`"${instagramUser.bio}"`}</p>
                 <p>{`Posts: ${instagramUser.counts.media}`}</p>
                 <p>{`Following: ${instagramUser.counts.follows}`}</p>
                 <p>{`Followers: ${instagramUser.counts.followed_by}`}</p>

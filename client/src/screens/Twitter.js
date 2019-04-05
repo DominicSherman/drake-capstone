@@ -24,10 +24,10 @@ export default class Twitter extends Component {
         const {
             twitterUserId,
             twitterUser,
-            twitterMedia,
-            setTwitterUser,
-            setTwitterMedia
+            setTwitterUser
         } = this.props;
+
+        console.log('twitterUser', twitterUser);
 
         if (!twitterUserId) {
             return (
@@ -40,9 +40,8 @@ export default class Twitter extends Component {
                     {'Log in to Twitter'}
                 </Button>
             );
-        } else if (!twitterUser.username) {
+        } else if (!twitterUser.id) {
             setTwitterUser();
-            setTwitterMedia();
         }
 
         return (
@@ -55,11 +54,6 @@ export default class Twitter extends Component {
                         sm={4}
                     >
                         <TwitterUserInfo twitterUser={twitterUser} />
-                    </Col>
-                    <Col>
-                        <TwitterMedia
-                            twitterMedia={twitterMedia}
-                        />
                     </Col>
                 </Row>
             </Container>

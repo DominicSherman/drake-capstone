@@ -5,8 +5,11 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 
 const {getCallbackUri} = require('./url-service');
 
-const verifyFunction = (accessToken, refreshToken, profile, done) => {
-    done(null, profile, {accessToken});
+const verifyFunction = (accessToken, tokenSecret, profile, done) => {
+    done(null, profile, {
+        accessToken,
+        tokenSecret
+    });
 };
 
 const instagramConfig = {
