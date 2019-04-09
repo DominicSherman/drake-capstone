@@ -5,11 +5,13 @@ admin.initializeApp(functions.config().firebase);
 
 const db = admin.firestore();
 
-const setUserData = (service, userId, accessToken, username, id) => db.collection(userId).doc(service).set({
-    accessToken,
-    id,
-    username
-});
+const setUserData = (service, userId, accessToken, tokenSecret, username, id) => // eslint-disable-line max-params
+    db.collection(userId).doc(service).set({
+        accessToken,
+        id,
+        tokenSecret: tokenSecret ? tokenSecret : '',
+        username
+    });
 
 const getUserSnapshot = (userId, service) => db.collection(userId).doc(service).get();
 

@@ -2,9 +2,10 @@ const rp = require('request-promise');
 const express = require('express');
 const cors = require('cors');
 
-const app = express();
 const {getUserSnapshot} = require('../services/database-service');
-const {FACEBOOK_USER_INFO, FACEBOOK_URL} = require('../endpoints');
+const {FACEBOOK_USER_INFO, FACEBOOK_URL} = require('../constants/endpoints');
+
+const app = express();
 
 app.use(cors());
 

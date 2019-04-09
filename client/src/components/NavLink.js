@@ -1,21 +1,23 @@
 import React, {Component} from 'react';
-import Button from 'react-bootstrap/Button';
-import {Link} from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
+
+import styles from '../css/components/NavLink.module.css';
 
 export default class NavLink extends Component {
     render() {
+        const {isActive, onClick, name} = this.props;
+
         return (
-            <Link
-                to={this.props.route}
-                style={{width: '100%'}}
+            <Nav.Link
+                className={styles.link}
+                onClick={onClick}
             >
-                <Button
-                    size={'90'}
-                    variant={'secondary'}
-                >
-                    {this.props.name}
-                </Button>
-            </Link>
+                <div className={styles.navLinkWrapper}>
+                    <p className={isActive ? styles.selectedNavLink : styles.navLink}>
+                        {name}
+                    </p>
+                </div>
+            </Nav.Link>
         );
     }
 }
