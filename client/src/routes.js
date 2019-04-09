@@ -1,7 +1,7 @@
 import InstagramContainer from './containers/InstagramContainer';
 import FacebookContainer from './containers/FacebookContainer';
 import TwitterContainer from './containers/TwitterContainer';
-import Analytics from './screens/Analytics';
+import AnalyticsContainer from './containers/AnalyticsContainer';
 
 export const ANALYTICS = '/';
 export const INSTAGRAM = '/instagram';
@@ -10,7 +10,7 @@ export const TWITTER = '/twitter';
 
 export const routes = [
     {
-        component: Analytics,
+        component: AnalyticsContainer,
         name: 'Analytics',
         path: ANALYTICS
     },
