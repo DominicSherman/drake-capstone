@@ -41,7 +41,6 @@ export default class Analytics extends Component {
         }
 
         const sortedMedia = instagramMedia.reverse();
-        console.log('sortedMedia', sortedMedia);
         const likesData = sortedMedia.map((post) => ({
             x: post.created_time,
             y: post.likes.count
