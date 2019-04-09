@@ -1,16 +1,6 @@
 import React, {Component} from 'react';
-import {
-    XYPlot,
-    XAxis,
-    YAxis,
-    HorizontalGridLines,
-    HorizontalBarSeries,
-    HeatmapSeries,
-    LineSeries,
-    RadialChart,
-    VerticalBarSeries,
-    LineMarkSeries, HorizontalRectSeries
-} from 'react-vis';
+import {Bar} from 'react-chartjs-2';
+import moment from 'moment';
 
 export default class Analytics extends Component {
     componentDidMount() {
@@ -43,97 +33,54 @@ export default class Analytics extends Component {
 
     render() {
         console.log('this.props', this.props);
+
         const {instagramMedia} = this.props;
 
-        const barChartData = instagramMedia.map((post) => ({
+        if (!instagramMedia.length) {
+            return null;
+        }
+
+        const sortedMedia = instagramMedia.sort((a, b) => a.created_time < b.created_time);
+        const likesData = sortedMedia.map((post) => ({
             x: post.created_time,
             y: post.likes.count
         }));
+        const commentData = sortedMedia.map((post) => ({
+            x: post.created_time,
+            y: post.comments.count
+        }));
+        const barChartLabels = sortedMedia.map((post) => moment.unix(Number(post.created_time)).format('MMM-D-Y'));
+        const data = {
+            datasets: [
+                {
+                    backgroundColor: 'rgba(255,99,132,0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1,
+                    data: likesData,
+                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+                    hoverBorderColor: 'rgba(255,99,132,1)',
+                    label: 'Likes'
+                },
+                {
+                    backgroundColor: 'rgba(0,104,217,0.2)',
+                    borderColor: 'rgba(0,104,217,1)',
+                    borderWidth: 1,
+                    data: commentData,
+                    hoverBackgroundColor: 'rgba(0,104,217,0.4)',
+                    hoverBorderColor: 'rgba(255,99,132,1)',
+                    label: 'Comments'
+                }
+            ],
+            labels: barChartLabels
+        };
 
         return (
             <div>
-                <XYPlot
-                    height={300}
-                    width={600}
-                >
-                    <XAxis
-                        title={'Date'}
-                    />
-                    <YAxis
-                        title={'Likes'}
-                    />
-                    <HorizontalBarSeries
-                        data={barChartData}
-                    />
-                </XYPlot>
-            </div>
-        );
-
-        const myData = [{angle: 1}, {angle: 5}, {angle: 2}];
-
-        return (
-            <div>{'ANALYTICS'}
-                <h1> MyFirstGraph </h1>
-
-                <XYPlot
-                    width={200}
-                    height={300}
-                >
-                    <HorizontalGridLines />
-                    <LineSeries
-                        color="red"
-                        data={[
-                            {x: 2, y: 10},
-                            {x: 2, y: 5},
-                            {x: 3, y: 15}
-                        ]}
-                    />
-                    <XAxis title="Hello there" />
-                    <YAxis />
-                </XYPlot>
-
-                <XYPlot
-                    width={300}
-                    height={300}
-                    getX={(d) => d[0]}
-                    getY={(d) => d[1]}
-                >
-                    <HorizontalBarSeries
-                        color="cyan"
-                        data={[
-                            [1, 0],
-                            [2, 1],
-                            [3, 2]
-                        ]}
-                    />
-                    <XAxis />
-                    <YAxis />
-                </XYPlot>
-
-                <XYPlot
-                    width={300}
-                    height={300}
-                >
-                    <XAxis />
-                    <YAxis />
-                    <HeatmapSeries
-                        colorType="literal"
-                        getColor={(d) => d.color === 'bad' ? '#f00' : '#0f0'}
-                        data={[
-                            {x: 1, y: 0, color: 'bad'},
-                            {x: 1, y: 5, color: 'bad'},
-                            {x: 1, y: 10, color: 'good'}
-                        ]}
-                    />
-                </XYPlot>
-
-                <RadialChart
-                    data={myData}
-                    width={300}
-                    height={300}
+                <h2>{'Instagram Likes Over Time'}</h2>
+                <Bar
+                    data={data}
                 />
             </div>
-
         );
     }
 }
