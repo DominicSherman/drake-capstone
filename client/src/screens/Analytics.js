@@ -40,7 +40,8 @@ export default class Analytics extends Component {
             return null;
         }
 
-        const sortedMedia = instagramMedia.sort((a, b) => a.created_time < b.created_time);
+        const sortedMedia = instagramMedia.reverse();
+        console.log('sortedMedia', sortedMedia);
         const likesData = sortedMedia.map((post) => ({
             x: post.created_time,
             y: post.likes.count
