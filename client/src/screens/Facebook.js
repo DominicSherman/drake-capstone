@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import queryString from 'query-string';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 import FacebookUserInfo from '../components/FacebookUserInfo';
 import LoginButton from '../components/LoginButton';
@@ -32,18 +29,7 @@ export default class Facebook extends Component {
         }
 
         return (
-            <Container
-                fluid
-            >
-                <Row>
-                    <Col
-                        id={'userInfo'}
-                        sm={4}
-                    >
-                        <FacebookUserInfo facebookUser={facebookUser} />
-                    </Col>
-                </Row>
-            </Container>
+            <FacebookUserInfo facebookUser={facebookUser} />
         );
     }
 }

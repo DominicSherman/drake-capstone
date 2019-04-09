@@ -1,5 +1,5 @@
 const INSTAGRAM_URL = 'https://api.instagram.com/v1';
-const INSTAGRAM_USER_INFO = `${INSTAGRAM_URL}/users/self`;
+const INSTAGRAM_USER_INFO = 'https://i.instagram.com/api/v1/users';
 const INSTAGRAM_MEDIA = `${INSTAGRAM_URL}/users/self/media/recent`;
 
 const FACEBOOK_URL = 'https://graph.facebook.com/v3.2';

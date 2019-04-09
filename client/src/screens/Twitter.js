@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import queryString from 'query-string';
 
 import TwitterUserInfo from '../components/TwitterUserInfo';
@@ -34,18 +31,7 @@ export default class Twitter extends Component {
         }
 
         return (
-            <Container
-                fluid
-            >
-                <Row>
-                    <Col
-                        id={'userInfo'}
-                        sm={4}
-                    >
-                        <TwitterUserInfo twitterUser={twitterUser} />
-                    </Col>
-                </Row>
-            </Container>
+            <TwitterUserInfo twitterUser={twitterUser} />
         );
     }
 }
