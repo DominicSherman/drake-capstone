@@ -4,7 +4,6 @@ import Instagram from '../screens/Instagram';
 import {setInstagramUserId, setInstagramMedia, setInstagramUser} from '../redux/action-creators';
 
 const mapStateToProps = (state) => ({
-    instagramMedia: state.instagramMedia,
     instagramUser: state.instagramUser,
     instagramUserId: state.instagramUserId
 });

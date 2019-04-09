@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import queryString from 'query-string';
 
-import InstagramMedia from '../components/InstagramMedia';
 import InstagramUserInfo from '../components/InstagramUserInfo';
 import LoginButton from '../components/LoginButton';
 
@@ -21,7 +17,6 @@ export default class Instagram extends Component {
         const {
             instagramUserId,
             instagramUser,
-            instagramMedia,
             setInstagramUser,
             setInstagramMedia
         } = this.props;
@@ -38,23 +33,7 @@ export default class Instagram extends Component {
         }
 
         return (
-            <Container
-                fluid
-            >
-                <Row>
-                    <Col
-                        id={'userInfo'}
-                        sm={4}
-                    >
-                        <InstagramUserInfo instagramUser={instagramUser} />
-                    </Col>
-                    <Col>
-                        <InstagramMedia
-                            instagramMedia={instagramMedia}
-                        />
-                    </Col>
-                </Row>
-            </Container>
+            <InstagramUserInfo instagramUser={instagramUser} />
         );
     }
 }

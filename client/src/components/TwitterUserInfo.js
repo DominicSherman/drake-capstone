@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import styles from '../css/components/TwitterUserInfo.module.css';
+import styles from '../css/components/UserInfo.module.css';
 import twitterLogo from '../assets/twitter-logo.png';
 
 export default class TwitterUserInfo extends Component {
@@ -14,11 +14,13 @@ export default class TwitterUserInfo extends Component {
                     className={styles.logo}
                     src={twitterLogo}
                 />
-                <img
-                    alt={''}
-                    className={styles.profilePicture}
-                    src={twitterUser.profile_image_url.replace('_normal', '')}
-                />
+                <div className={styles.profilePictureWrapper}>
+                    <img
+                        alt={''}
+                        className={styles.profilePicture}
+                        src={twitterUser.profile_image_url.replace('_normal', '')}
+                    />
+                </div>
                 <p>{twitterUser.screen_name}</p>
                 <p>{twitterUser.name}</p>
                 <p>{`"${twitterUser.description}"`}</p>

@@ -1,52 +1,43 @@
 import React, {Component} from 'react';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from 'react-bootstrap/Button';
 
 import styles from './css/App.module.css';
 import Routing from './Routing';
-import NavLink from './components/NavLink';
-import {ANALYTICS, FACEBOOK, INSTAGRAM, TWITTER} from './routes';
+import NavBar from './components/NavBar';
 
 export default class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            navBarHeight: 0
+        };
+    }
+
+    componentDidMount() {
+        this._setNavBarHeight();
+    }
+
+    componentDidUpdate() {
+        if (this.state.navBarHeight !== document.getElementById('navbar').scrollHeight) {
+            this._setNavBarHeight();
+        }
+    }
+
+    _setNavBarHeight = () => this.setState({navBarHeight: document.getElementById('navbar').scrollHeight});
+
     render() {
-        const {logout} = this.props;
+        const {logout, history} = this.props;
 
         return (
             <div className={styles.wrapper}>
-                <div
-                    style={{
-                        marginBottom: 15,
-                        width: '100%'
-                    }}
-                >
-                    <Button
-                        onClick={logout}
-                        style={{width: '8%'}}
-                    >
-                        {'Logout'}
-                    </Button>
+                <NavBar
+                    history={history}
+                    location={this.props.location}
+                    logout={logout}
+                />
+                <div style={{marginTop: this.state.navBarHeight}}>
+                    <Routing />
                 </div>
-                <ButtonGroup
-                    className={styles.buttonGroupWrapper}
-                >
-                    <NavLink
-                        name={'Analytics'}
-                        route={ANALYTICS}
-                    />
-                    <NavLink
-                        name={'Instagram'}
-                        route={INSTAGRAM}
-                    />
-                    <NavLink
-                        name={'Facebook'}
-                        route={FACEBOOK}
-                    />
-                    <NavLink
-                        name={'Twitter'}
-                        route={TWITTER}
-                    />
-                </ButtonGroup>
-                <Routing />
             </div>
         );
     }
