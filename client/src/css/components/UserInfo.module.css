@@ -10,25 +10,31 @@
     box-shadow: 0 0 8px grey;
 }
 
-.logo {
+.logoWrapper {
     width: 20%;
-    height: auto;
-    padding-bottom: 4%;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 4%;
+    filter: drop-shadow(2px 2px 3px grey);
 }
 
 .wrapper p {
     font-size: 20px;
     padding: 2%;
-    text-shadow: 0.5px 1.5px 1px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
 }
 
 .profilePictureWrapper {
     width: 40%;
+    margin: 3%;
 }
 
 .profilePicture {
     width: 100%;
     height: 100%;
     border-radius: 50px;
-    box-shadow: 0 0 5px grey;
+    box-shadow: 2px 2px 3px grey;
 }

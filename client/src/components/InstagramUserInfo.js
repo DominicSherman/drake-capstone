@@ -9,11 +9,13 @@ export default class InstagramUserInfo extends Component {
 
         return (
             <div className={styles.wrapper}>
-                <img
-                    alt={''}
-                    className={styles.logo}
-                    src={instagramLogo}
-                />
+                <div className={styles.logoWrapper}>
+                    <img
+                        alt={''}
+                        className={styles.logo}
+                        src={instagramLogo}
+                    />
+                </div>
                 <div className={styles.profilePictureWrapper}>
                     <img
                         alt={''}

@@ -9,5 +9,8 @@
     "start:client": "cd client && yarn start",
     "build": "node client/scripts/build.js",
     "deploy": "cd client && yarn deploy && cd ../server && yarn deploy"
+  },
+  "dependencies": {
+    "react-loading-screen": "^0.0.17"
   }
 }
