@@ -7,3 +7,4 @@ export const SET_TWITTER_USER_ID = 'SET_TWITTER_USER_ID';
 export const SET_TWITTER_USER = 'SET_TWITTER_USER';
 export const SET_TWITTER_MEDIA = 'SET_TWITTER_MEDIA';
 export const RESET_STATE = 'RESET_STATE';
+export const SET_LOADING = 'SET_LOADING';

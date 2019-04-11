@@ -10,7 +10,7 @@ import {
     SET_FACEBOOK_USER_ID,
     SET_INSTAGRAM_MEDIA,
     SET_INSTAGRAM_USER,
-    SET_INSTAGRAM_USER_ID,
+    SET_INSTAGRAM_USER_ID, SET_LOADING,
     SET_TWITTER_USER,
     SET_TWITTER_USER_ID
 } from './actions';
@@ -33,11 +33,15 @@ export const setTwitterUserId = (userId) => (dispatch) => {
 export const setInstagramUser = () => async (dispatch, getState) => {
     const userId = getState().instagramUserId;
 
+    dispatch(action(SET_LOADING, true));
+
     const user = await rp({
         json: true,
         qs: {userId},
         uri: INSTAGRAM_USER_INFO
     });
+
+    dispatch(action(SET_LOADING, false));
 
     dispatch(action(SET_INSTAGRAM_USER, user));
 };
@@ -45,11 +49,15 @@ export const setInstagramUser = () => async (dispatch, getState) => {
 export const setInstagramMedia = () => async (dispatch, getState) => {
     const userId = getState().instagramUserId;
 
+    dispatch(action(SET_LOADING, true));
+
     const userMedia = await rp({
         json: true,
         qs: {userId},
         uri: INSTAGRAM_MEDIA
     });
+
+    dispatch(action(SET_LOADING, false));
 
     dispatch(action(SET_INSTAGRAM_MEDIA, userMedia));
 };
@@ -57,11 +65,15 @@ export const setInstagramMedia = () => async (dispatch, getState) => {
 export const setTwitterUser = () => async (dispatch, getState) => {
     const userId = getState().twitterUserId;
 
+    dispatch(action(SET_LOADING, true));
+
     const user = await rp({
         json: true,
         qs: {userId},
         uri: TWITTER_USER_INFO
     });
+
+    dispatch(action(SET_LOADING, false));
 
     dispatch(action(SET_TWITTER_USER, user));
 };
@@ -69,11 +81,15 @@ export const setTwitterUser = () => async (dispatch, getState) => {
 export const setFacebookUser = () => async (dispatch, getState) => {
     const userId = getState().facebookUserId;
 
+    dispatch(action(SET_LOADING, true));
+
     const user = await rp({
         json: true,
         qs: {userId},
         uri: FACEBOOK_USER_INFO
     });
+
+    dispatch(action(SET_LOADING, false));
 
     dispatch(action(SET_FACEBOOK_USER, user));
 };

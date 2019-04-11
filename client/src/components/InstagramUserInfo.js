@@ -7,15 +7,15 @@ export default class InstagramUserInfo extends Component {
     render() {
         const {instagramUser} = this.props;
 
-        console.log('instagramUser', instagramUser);
-
         return (
             <div className={styles.wrapper}>
-                <img
-                    alt={''}
-                    className={styles.logo}
-                    src={instagramLogo}
-                />
+                <div className={styles.logoWrapper}>
+                    <img
+                        alt={''}
+                        className={styles.logo}
+                        src={instagramLogo}
+                    />
+                </div>
                 <div className={styles.profilePictureWrapper}>
                     <img
                         alt={''}

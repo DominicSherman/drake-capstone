@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import LoadingScreen from 'react-loading-screen';
 
 import styles from './css/App.module.css';
 import Routing from './Routing';
@@ -26,7 +27,7 @@ export default class App extends Component {
     _setNavBarHeight = () => this.setState({navBarHeight: document.getElementById('navbar').scrollHeight});
 
     render() {
-        const {logout, history} = this.props;
+        const {logout, history, loading} = this.props;
 
         return (
             <div className={styles.wrapper}>
@@ -35,9 +36,15 @@ export default class App extends Component {
                     location={this.props.location}
                     logout={logout}
                 />
-                <div style={{marginTop: this.state.navBarHeight}}>
-                    <Routing />
-                </div>
+                <LoadingScreen
+                    bgColor={'#f1f1f1'}
+                    loading={loading}
+                    spinnerColor={'#00539F'}
+                >
+                    <div style={{marginTop: this.state.navBarHeight}}>
+                        <Routing />
+                    </div>
+                </LoadingScreen>
             </div>
         );
     }
