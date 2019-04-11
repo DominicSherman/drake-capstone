@@ -48,6 +48,7 @@ export default class NavBar extends Component {
                         <Button
                             onClick={logout}
                             style={{width: '8%'}}
+                            variant="outline-light"
                         >
                             {'Logout'}
                         </Button>
