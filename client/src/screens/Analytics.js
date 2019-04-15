@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 
 import InstagramLikesAndComments from '../graphs/InstagramLikesAndComments';
+import TwitterFollowerRatio from '../graphs/TwitterFollowerRatio';
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
 
 export default class Analytics extends Component {
     componentDidMount() {
@@ -34,7 +37,14 @@ export default class Analytics extends Component {
     render() {
         return (
             <div>
-                <InstagramLikesAndComments {...this.props} />
+                <Container>
+                    <Col>
+                        <InstagramLikesAndComments {...this.props} />
+                    </Col>
+                    <Col>
+                        <TwitterFollowerRatio {...this.props} />
+                    </Col>
+                </Container>
             </div>
         );
     }
