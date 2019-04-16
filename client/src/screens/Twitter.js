@@ -18,7 +18,8 @@ export default class Twitter extends Component {
         const {
             twitterUserId,
             twitterUser,
-            setTwitterUser
+            setTwitterUser,
+            setTwitterMedia
         } = this.props;
 
         if (!twitterUserId) {
@@ -27,6 +28,7 @@ export default class Twitter extends Component {
             );
         } else if (!twitterUser.id) {
             setTwitterUser();
+            setTwitterMedia();
 
             return null;
         }

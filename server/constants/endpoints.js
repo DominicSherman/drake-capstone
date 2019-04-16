@@ -6,7 +6,7 @@ const FACEBOOK_URL = 'https://graph.facebook.com/v3.2';
 const FACEBOOK_USER_INFO = `${FACEBOOK_URL}/me?fields=id,name,friends`;
 
 const TWITTER_USER_INFO = 'users/show.json';
-const TWITTER_MEDIA = 'statuses/show.json';
+const TWITTER_MEDIA = 'statuses/user_timeline.json';
 
 module.exports = {
     FACEBOOK_URL,

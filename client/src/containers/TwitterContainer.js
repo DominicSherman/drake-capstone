@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import Twitter from '../screens/Twitter';
-import {setTwitterUser, setTwitterUserId} from '../redux/action-creators';
+import {setTwitterMedia, setTwitterUser, setTwitterUserId} from '../redux/action-creators';
 
 const mapStateToProps = (state) => ({
     twitterUser: state.twitterUser,
@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    setTwitterMedia: () => dispatch(setTwitterMedia()),
     setTwitterUser: () => dispatch(setTwitterUser()),
     setTwitterUserId: (userId) => dispatch(setTwitterUserId(userId))
 });
