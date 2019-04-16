@@ -8,13 +8,13 @@ export default class TwitterFollowerRatio extends Component {
     render() {
         const {facebookUser} = this.props;
 
-        if (!facebookUser.length) {
+        if (!facebookUser.id) {
             return null;
         }
 
         const {instagramUser} = this.props;
 
-        if (!instagramUser.length) {
+        if (!instagramUser.id) {
             return null;
         }
 

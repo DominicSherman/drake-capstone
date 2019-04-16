@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 
 import TwitterFollowerRatio from '../graphs/TwitterFollowerRatio';
 import InstagramLikesAndComments from '../graphs/InstagramLikesAndComments';
+import InstagramTwitterFollowers from '../graphs/InstagramTwitterFollowers';
 import {setFacebookData, setInstagramData, setTwitterData} from '../services/set-data-service';
 
 export default class Analytics extends Component {
@@ -24,6 +25,9 @@ export default class Analytics extends Component {
                         </Col>
                         <Col>
                             <TwitterFollowerRatio {...this.props} />
+                        </Col>
+                        <Col>
+                            <InstagramTwitterFollowers{...this.props} />
                         </Col>
                     </Row>
                 </Container>
