@@ -1,0 +1,9 @@
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.userInfoWrapper {
+    margin-bottom: 30px;
+}
+

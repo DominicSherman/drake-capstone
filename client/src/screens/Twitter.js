@@ -3,6 +3,9 @@ import queryString from 'query-string';
 
 import TwitterUserInfo from '../components/TwitterUserInfo';
 import LoginButton from '../components/LoginButton';
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+import Button from "react-bootstrap/Button";
+import styles from '../css/components/Platform.module.css';
 
 export default class Twitter extends Component {
     componentDidMount() {
@@ -31,7 +34,16 @@ export default class Twitter extends Component {
         }
 
         return (
-            <TwitterUserInfo twitterUser={twitterUser} />
+            <div>
+                <div className={styles.userInfoWrapper}>
+                    <TwitterUserInfo twitterUser={twitterUser} />
+                </div>
+                <div className={styles.buttonWrapper}>
+                    <ButtonToolbar>
+                        <Button id = "Twitter" href="https://twitter.com/">Twitter</Button>
+                    </ButtonToolbar>
+                </div>
+            </div>
         );
     }
 }
