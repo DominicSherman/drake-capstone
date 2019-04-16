@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import queryString from 'query-string';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import Button from 'react-bootstrap/Button';
 
 import TwitterUserInfo from '../components/TwitterUserInfo';
 import LoginButton from '../components/LoginButton';
@@ -39,15 +37,6 @@ export default class Twitter extends Component {
             <div>
                 <div className={styles.userInfoWrapper}>
                     <TwitterUserInfo twitterUser={twitterUser} />
-                </div>
-                <div className={styles.buttonWrapper}>
-                    <ButtonToolbar>
-                        <Button
-                            id="Twitter"
-                            href="https://twitter.com/"
-                        >Twitter
-                        </Button>
-                    </ButtonToolbar>
                 </div>
             </div>
         );

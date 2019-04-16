@@ -10,11 +10,16 @@ export default class TwitterUserInfo extends Component {
         return (
             <div className={styles.wrapper}>
                 <div className={styles.logoWrapper}>
-                    <img
-                        alt={''}
-                        className={styles.logo}
-                        src={twitterLogo}
-                    />
+                    <a
+                        href={'https://twitter.com/'}
+                        target={'_blank'}
+                    >
+                        <img
+                            alt={''}
+                            className={styles.logo}
+                            src={twitterLogo}
+                        />
+                    </a>
                 </div>
                 <div className={styles.profilePictureWrapper}>
                     <img
