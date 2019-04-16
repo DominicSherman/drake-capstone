@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Bar, Doughnut} from 'react-chartjs-2';
-import {red, blue} from "../constants/colors";
+import {Doughnut} from 'react-chartjs-2';
+
+import {blue, red} from '../constants/colors';
 
 export default class TwitterFollowerRatio extends Component {
     render() {
@@ -20,7 +21,7 @@ export default class TwitterFollowerRatio extends Component {
                     borderColor: [red, blue],
                     borderWidth: 1,
                     data: [followers_count, friends_count],
-                    hoverBackgroundColor: [`${red}40`,`${blue}20`],
+                    hoverBackgroundColor: [`${red}40`, `${blue}20`],
                     hoverBorderColor: [red, blue]
                 }
             ],
