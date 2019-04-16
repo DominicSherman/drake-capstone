@@ -3,11 +3,12 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import TwitterFollowerRatio from '../graphs/TwitterFollowerRatio';
-import InstagramLikesAndComments from '../graphs/InstagramLikesAndComments';
 import {setFacebookData, setInstagramData, setTwitterData} from '../services/set-data-service';
 import Dropdown from "react-bootstrap/Dropdown";
-import styles from "../css/components/Platform.module.css"
+import styles from "../css/components/PageLayout.module.css"
+import InstagramAnalytics from "../components/InstagramAnalytics";
+import TwitterAnalytics from "../components/TwitterAnalytics";
+import FacebookAnalytics from "../components/FacebookAnalytics";
 
 export default class Analytics extends Component {
     componentDidMount() {
@@ -35,14 +36,14 @@ export default class Analytics extends Component {
                     btnSelected: false
                 },
                 {
-                    id: 1,
+                    id: 3,
                     topic: "Twitter",
                     btnSelected: false
                 },
                 {
-                    id: 1,
+                    id: 4,
                     topic: "Overall",
-                    btnSelected: true
+                    btnSelected: false
                 },
             ]
         };
@@ -62,9 +63,34 @@ export default class Analytics extends Component {
     }
 
     render() {
+
+        const { value } = this.state;
+
+        if(value == "Instagram"){
+            return(
+                <div>
+                    <InstagramAnalytics {...this.props}/>
+                </div>
+            );
+        } else if(value == "Facebook"){
+            return(
+                <div>
+                    <FacebookAnalytics {...this.props}/>
+                </div>
+            );
+        } else if(value == "Twitter"){
+            return(
+                <div>
+                    <TwitterAnalytics {...this.props}/>
+                </div>
+            );
+        } else{
+
+        }
+
         return (
             <div>
-                <div>
+                <div className={styles.dropDownWrapper}>
                     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                         <Dropdown.Toggle>
                             {this.state.value}
@@ -74,20 +100,16 @@ export default class Analytics extends Component {
                             <Dropdown.Item onClick={this.select}>Facebook</Dropdown.Item>
                             <Dropdown.Item onClick={this.select}>Instagram</Dropdown.Item>
                             <Dropdown.Item onClick={this.select}>Twitter</Dropdown.Item>
+                            <Dropdown.Divider/>
                             <Dropdown.Item onClick={this.select}>Overall</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
-                <Container>
-                    <Row>
-                        <Col>
-                            <InstagramLikesAndComments {...this.props} />
-                        </Col>
-                        <Col>
-                            <TwitterFollowerRatio {...this.props} />
-                        </Col>
-                    </Row>
-                </Container>
+                <div>
+                    <script>
+
+                    </script>
+                </div>
             </div>
         );
     }

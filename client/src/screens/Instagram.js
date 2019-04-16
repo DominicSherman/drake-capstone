@@ -3,7 +3,7 @@ import queryString from 'query-string';
 
 import InstagramUserInfo from '../components/InstagramUserInfo';
 import LoginButton from '../components/LoginButton';
-import styles from '../css/components/Platform.module.css';
+import styles from '../css/components/PageLayout.module.css';
 import {setInstagramData} from '../services/set-data-service';
 
 export default class Instagram extends Component {
