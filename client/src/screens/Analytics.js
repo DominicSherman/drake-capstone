@@ -18,6 +18,7 @@ export default class Analytics extends Component {
             setInstagramUser,
             setInstagramMedia,
             setTwitterUser,
+            setTwitterMedia,
             setFacebookUser
         } = this.props;
 
@@ -28,6 +29,7 @@ export default class Analytics extends Component {
 
         if (twitterUserId && !twitterUser.id) {
             setTwitterUser();
+            setTwitterMedia();
         }
 
         if (facebookUserId && !facebookUser.name) {

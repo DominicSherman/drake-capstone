@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import queryString from 'query-string';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Button from 'react-bootstrap/Button';
 
 import TwitterUserInfo from '../components/TwitterUserInfo';
 import LoginButton from '../components/LoginButton';
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
-import Button from "react-bootstrap/Button";
 import styles from '../css/components/Platform.module.css';
 
 export default class Twitter extends Component {
@@ -20,7 +20,8 @@ export default class Twitter extends Component {
         const {
             twitterUserId,
             twitterUser,
-            setTwitterUser
+            setTwitterUser,
+            setTwitterMedia
         } = this.props;
 
         if (!twitterUserId) {
@@ -29,6 +30,7 @@ export default class Twitter extends Component {
             );
         } else if (!twitterUser.id) {
             setTwitterUser();
+            setTwitterMedia();
 
             return null;
         }
@@ -40,7 +42,11 @@ export default class Twitter extends Component {
                 </div>
                 <div className={styles.buttonWrapper}>
                     <ButtonToolbar>
-                        <Button id = "Twitter" href="https://twitter.com/">Twitter</Button>
+                        <Button
+                            id="Twitter"
+                            href="https://twitter.com/"
+                        >Twitter
+                        </Button>
                     </ButtonToolbar>
                 </div>
             </div>

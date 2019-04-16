@@ -9,6 +9,7 @@ const mapDispatchToProps = (dispatch) => ({
     setFacebookUser: () => dispatch(setFacebookUser()),
     setInstagramMedia: () => dispatch(setInstagramMedia()),
     setInstagramUser: () => dispatch(setInstagramUser()),
+    setTwitterUser: () => dispatch(setTwitterUser()),
     setTwitterUser: () => dispatch(setTwitterUser())
 });
 
