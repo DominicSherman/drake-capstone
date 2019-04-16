@@ -10,11 +10,16 @@ export default class FacebookUserInfo extends Component {
         return (
             <div className={styles.wrapper}>
                 <div className={styles.logoWrapper}>
-                    <img
-                        alt={''}
-                        className={styles.logo}
-                        src={facebookLogo}
-                    />
+                    <a
+                        href={'https://www.facebook.com/'}
+                        target={'_blank'}
+                    >
+                        <img
+                            alt={''}
+                            className={styles.logo}
+                            src={facebookLogo}
+                        />
+                    </a>
                 </div>
                 <div className={styles.profilePictureWrapper}>
                     <img
