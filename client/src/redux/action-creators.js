@@ -95,8 +95,6 @@ export const setTwitterMedia = () => async (dispatch, getState) => {
         uri: TWITTER_MEDIA
     });
 
-    console.log('media', media);
-
     dispatch(action(SET_LOADING, false));
 
     dispatch(action(SET_TWITTER_MEDIA, media));
