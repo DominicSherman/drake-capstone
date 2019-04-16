@@ -5,36 +5,13 @@ import Row from 'react-bootstrap/Row';
 
 import TwitterFollowerRatio from '../graphs/TwitterFollowerRatio';
 import InstagramLikesAndComments from '../graphs/InstagramLikesAndComments';
+import {setFacebookData, setInstagramData, setTwitterData} from '../services/set-data-service';
 
 export default class Analytics extends Component {
     componentDidMount() {
-        const {
-            instagramUserId,
-            instagramUser,
-            twitterUserId,
-            twitterUser,
-            facebookUserId,
-            facebookUser,
-            setInstagramUser,
-            setInstagramMedia,
-            setTwitterUser,
-            setTwitterMedia,
-            setFacebookUser
-        } = this.props;
-
-        if (instagramUserId && !instagramUser.username) {
-            setInstagramUser();
-            setInstagramMedia();
-        }
-
-        if (twitterUserId && !twitterUser.id) {
-            setTwitterUser();
-            setTwitterMedia();
-        }
-
-        if (facebookUserId && !facebookUser.name) {
-            setFacebookUser();
-        }
+        setInstagramData(this.props);
+        setTwitterData(this.props);
+        setFacebookData(this.props);
     }
 
     render() {

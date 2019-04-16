@@ -12,7 +12,7 @@ export default class InstagramLikesAndComments extends Component {
             return null;
         }
 
-        const sortedMedia = instagramMedia.reverse();
+        const sortedMedia = [...instagramMedia].reverse();
         const likesData = sortedMedia.map((post) => ({
             x: post.created_time,
             y: post.likes.count

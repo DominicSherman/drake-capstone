@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import Facebook from '../screens/Facebook';
-import {setFacebookUser, setFacebookUserId} from '../redux/action-creators';
+import {setFacebookMedia, setFacebookUser, setFacebookUserId} from '../redux/action-creators';
 
 const mapStateToProps = (state) => ({
     facebookUser: state.facebookUser,
@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    setFacebookMedia: () => dispatch(setFacebookMedia()),
     setFacebookUser: () => dispatch(setFacebookUser()),
     setFacebookUserId: (userId) => dispatch(setFacebookUserId(userId))
 });

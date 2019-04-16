@@ -4,32 +4,23 @@ import queryString from 'query-string';
 import TwitterUserInfo from '../components/TwitterUserInfo';
 import LoginButton from '../components/LoginButton';
 import styles from '../css/components/Platform.module.css';
+import {setTwitterData} from '../services/set-data-service';
 
 export default class Twitter extends Component {
     componentDidMount() {
         const userId = queryString.parse(window.location.hash).twitterUserId;
 
-        if (userId) {
-            this.props.setTwitterUserId(userId);
-        }
+        setTwitterData(this.props, userId);
     }
 
     render() {
-        const {
-            twitterUserId,
-            twitterUser,
-            setTwitterUser,
-            setTwitterMedia
-        } = this.props;
+        const {twitterUserId, twitterUser} = this.props;
 
         if (!twitterUserId) {
             return (
                 <LoginButton service={'twitter'} />
             );
         } else if (!twitterUser.id) {
-            setTwitterUser();
-            setTwitterMedia();
-
             return null;
         }
 

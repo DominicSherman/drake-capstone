@@ -1,16 +1,19 @@
 import {
     RESET_STATE,
+    SET_FACEBOOK_MEDIA,
     SET_FACEBOOK_USER,
     SET_FACEBOOK_USER_ID,
     SET_INSTAGRAM_MEDIA,
     SET_INSTAGRAM_USER,
-    SET_INSTAGRAM_USER_ID, SET_LOADING,
+    SET_INSTAGRAM_USER_ID,
+    SET_LOADING,
     SET_TWITTER_MEDIA,
     SET_TWITTER_USER,
     SET_TWITTER_USER_ID
 } from './actions';
 
 const defaultState = {
+    facebookMedia: [],
     facebookUser: {},
     facebookUserId: null,
     instagramMedia: [],
@@ -47,6 +50,11 @@ const setFacebookUser = (state, facebookUser) => ({
     facebookUser
 });
 
+const setFacebookMedia = (state, facebookMedia) => ({
+    ...state,
+    facebookMedia
+});
+
 const setTwitterUserId = (state, twitterUserId) => ({
     ...state,
     twitterUserId
@@ -71,6 +79,7 @@ const resetState = () => defaultState;
 
 const reducerMap = {
     [RESET_STATE]: resetState,
+    [SET_FACEBOOK_MEDIA]: setFacebookMedia,
     [SET_FACEBOOK_USER]: setFacebookUser,
     [SET_FACEBOOK_USER_ID]: setFacebookUserId,
     [SET_INSTAGRAM_MEDIA]: setInstagramMedia,
