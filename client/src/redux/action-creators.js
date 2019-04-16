@@ -1,6 +1,7 @@
 import rp from 'request-promise';
 
 import {
+    FACEBOOK_MEDIA,
     FACEBOOK_USER_INFO,
     INSTAGRAM_MEDIA,
     INSTAGRAM_USER_INFO,
@@ -11,7 +12,7 @@ import {clearStorage, getUserId, setUserId} from '../services/local-storage-serv
 
 import {action} from './action';
 import {
-    RESET_STATE,
+    RESET_STATE, SET_FACEBOOK_MEDIA,
     SET_FACEBOOK_USER,
     SET_FACEBOOK_USER_ID,
     SET_INSTAGRAM_MEDIA,
@@ -36,8 +37,12 @@ export const setTwitterUserId = (userId) => (dispatch) => {
     dispatch(action(SET_TWITTER_USER_ID, userId));
 };
 
-export const setInstagramUser = () => async (dispatch, getState) => {
-    const userId = getState().instagramUserId;
+export const setInstagramUser = (id) => async (dispatch, getState) => {
+    let userId = id;
+
+    if (!userId) {
+        userId = getState().instagramUserId;
+    }
 
     dispatch(action(SET_LOADING, true));
 
@@ -52,8 +57,12 @@ export const setInstagramUser = () => async (dispatch, getState) => {
     dispatch(action(SET_INSTAGRAM_USER, user));
 };
 
-export const setInstagramMedia = () => async (dispatch, getState) => {
-    const userId = getState().instagramUserId;
+export const setInstagramMedia = (id) => async (dispatch, getState) => {
+    let userId = id;
+
+    if (!userId) {
+        userId = getState().instagramUserId;
+    }
 
     dispatch(action(SET_LOADING, true));
 
@@ -68,8 +77,12 @@ export const setInstagramMedia = () => async (dispatch, getState) => {
     dispatch(action(SET_INSTAGRAM_MEDIA, userMedia));
 };
 
-export const setTwitterUser = () => async (dispatch, getState) => {
-    const userId = getState().twitterUserId;
+export const setTwitterUser = (id) => async (dispatch, getState) => {
+    let userId = id;
+
+    if (!userId) {
+        userId = getState().twitterUserId;
+    }
 
     dispatch(action(SET_LOADING, true));
 
@@ -84,8 +97,12 @@ export const setTwitterUser = () => async (dispatch, getState) => {
     dispatch(action(SET_TWITTER_USER, user));
 };
 
-export const setTwitterMedia = () => async (dispatch, getState) => {
-    const userId = getState().twitterUserId;
+export const setTwitterMedia = (id) => async (dispatch, getState) => {
+    let userId = id;
+
+    if (!userId) {
+        userId = getState().twitterUserId;
+    }
 
     dispatch(action(SET_LOADING, true));
 
@@ -100,8 +117,12 @@ export const setTwitterMedia = () => async (dispatch, getState) => {
     dispatch(action(SET_TWITTER_MEDIA, media));
 };
 
-export const setFacebookUser = () => async (dispatch, getState) => {
-    const userId = getState().facebookUserId;
+export const setFacebookUser = (id) => async (dispatch, getState) => {
+    let userId = id;
+
+    if (!userId) {
+        userId = getState().facebookUserId;
+    }
 
     dispatch(action(SET_LOADING, true));
 
@@ -114,6 +135,26 @@ export const setFacebookUser = () => async (dispatch, getState) => {
     dispatch(action(SET_LOADING, false));
 
     dispatch(action(SET_FACEBOOK_USER, user));
+};
+
+export const setFacebookMedia = (id) => async (dispatch, getState) => {
+    let userId = id;
+
+    if (!userId) {
+        userId = getState().facebookUserId;
+    }
+
+    dispatch(action(SET_LOADING, true));
+
+    const media = await rp({
+        json: true,
+        qs: {userId},
+        uri: FACEBOOK_MEDIA
+    });
+
+    dispatch(action(SET_LOADING, false));
+
+    dispatch(action(SET_FACEBOOK_MEDIA, media));
 };
 
 export const tryToLoadCredentials = () => (dispatch) => {

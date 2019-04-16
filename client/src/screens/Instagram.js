@@ -4,22 +4,19 @@ import queryString from 'query-string';
 import InstagramUserInfo from '../components/InstagramUserInfo';
 import LoginButton from '../components/LoginButton';
 import styles from '../css/components/Platform.module.css';
+import {setInstagramData} from '../services/set-data-service';
 
 export default class Instagram extends Component {
     componentDidMount() {
         const userId = queryString.parse(window.location.hash).instagramUserId;
 
-        if (userId) {
-            this.props.setInstagramUserId(userId);
-        }
+        setInstagramData(this.props, userId);
     }
 
     render() {
         const {
             instagramUserId,
-            instagramUser,
-            setInstagramUser,
-            setInstagramMedia
+            instagramUser
         } = this.props;
 
         if (!instagramUserId) {
@@ -27,9 +24,6 @@ export default class Instagram extends Component {
                 <LoginButton service={'instagram'} />
             );
         } else if (!instagramUser.username) {
-            setInstagramUser();
-            setInstagramMedia();
-
             return null;
         }
 

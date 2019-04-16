@@ -39,4 +39,30 @@ app.get('/user', (req, res) =>
         .catch((error) => res.send(error))
 );
 
+app.get('/media', (req, res) =>
+    getUserSnapshot(req.query.userId, 'facebook')
+        .then(async (doc) => {
+            const {accessToken, id} = doc.data();
+
+            const {data} = await rp({
+                json: true,
+                qs: {access_token: accessToken},
+                uri: `${FACEBOOK_URL}/${id}/posts?limit=50`
+            });
+            const likes = await Promise.all(data.map((post) => rp({
+                json: true,
+                qs: {access_token: accessToken},
+                uri: `${FACEBOOK_URL}/${post.id}/likes?summary=true`
+            })));
+
+            const dataWithLikes = data.map((post, index) => ({
+                ...post,
+                likes: likes[index].summary ? likes[index].summary.total_count : 0
+            }));
+
+            res.send(dataWithLikes);
+        })
+        .catch((error) => res.send(error))
+);
+
 module.exports = {app};

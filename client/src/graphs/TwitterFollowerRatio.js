@@ -7,7 +7,7 @@ export default class TwitterFollowerRatio extends Component {
     render() {
         const {twitterUser} = this.props;
 
-        if (!twitterUser) {
+        if (!twitterUser.id) {
             return null;
         }
 
