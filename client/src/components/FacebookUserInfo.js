@@ -7,6 +7,8 @@ export default class FacebookUserInfo extends Component {
     render() {
         const {facebookUser} = this.props;
 
+        console.log('facebookUser', facebookUser);
+
         return (
             <div className={styles.wrapper}>
                 <div className={styles.logoWrapper}>
@@ -30,6 +32,10 @@ export default class FacebookUserInfo extends Component {
                 </div>
                 <p>{facebookUser.name}</p>
                 <p>{`${facebookUser.friends.summary.total_count} friends`}</p>
+                <p>{facebookUser.location.name}</p>
+                <p>{`Born ${facebookUser.birthday}`}</p>
+                <p>{`Age: ${facebookUser.age_range.min}`}</p>
+                <p>{facebookUser.quotes}</p>
             </div>
         );
     }

@@ -3,7 +3,7 @@ const INSTAGRAM_USER_INFO = 'https://i.instagram.com/api/v1/users';
 const INSTAGRAM_MEDIA = `${INSTAGRAM_URL}/users/self/media/recent`;
 
 const FACEBOOK_URL = 'https://graph.facebook.com/v3.2';
-const FACEBOOK_USER_INFO = `${FACEBOOK_URL}/me?fields=id,name,friends`;
+const FACEBOOK_USER_INFO = `${FACEBOOK_URL}/me?fields=id,name,friends,age_range,birthday,location,quotes`;
 
 const TWITTER_USER_INFO = 'users/show.json';
 const TWITTER_MEDIA = 'statuses/user_timeline.json';
