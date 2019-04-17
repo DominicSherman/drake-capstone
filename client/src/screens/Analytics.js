@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {setFacebookData, setInstagramData, setTwitterData} from '../services/set-data-service';
 import Dropdown from "react-bootstrap/Dropdown";
@@ -10,6 +7,13 @@ import InstagramAnalytics from "../components/InstagramAnalytics";
 import TwitterAnalytics from "../components/TwitterAnalytics";
 import FacebookAnalytics from "../components/FacebookAnalytics";
 import OverallAnalytics from "../components/OverallAnalytics";
+
+const mapValueToComponent = {
+    ['Instagram']: InstagramAnalytics,
+    ['Facebook']: FacebookAnalytics,
+    ['Twitter']: TwitterAnalytics,
+    ['Influence']: OverallAnalytics
+}
 
 export default class Analytics extends Component {
     componentDidMount() {
@@ -24,7 +28,7 @@ export default class Analytics extends Component {
         this.select = this.select.bind(this);
         this.state = {
             dropdownOpen: false,
-            value : "Analytics View",
+            value : "Influence",
             posts : [
                 {
                     id: 1,
@@ -43,7 +47,7 @@ export default class Analytics extends Component {
                 },
                 {
                     id: 4,
-                    topic: "Overall",
+                    topic: "Influence",
                     btnSelected: true
                 },
             ]
@@ -64,114 +68,29 @@ export default class Analytics extends Component {
     }
 
     render() {
+        const Component = mapValueToComponent[this.state.value];
 
-        const { value } = this.state;
+        return (
+            <div>
+                <div className={styles.dropDownWrapper}>
+                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                        <Dropdown.Toggle>
+                            {this.state.value}
+                        </Dropdown.Toggle>
 
-        if(value == "Instagram"){
-            return(
-                <div>
-                    <div className={styles.dropDownWrapper}>
-                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <Dropdown.Toggle>
-                                {this.state.value}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item onClick={this.select}>Facebook</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Instagram</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Twitter</Dropdown.Item>
-                                <Dropdown.Divider/>
-                                <Dropdown.Item onClick={this.select}>Overall</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                    <InstagramAnalytics {...this.props}/>
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={this.select}>Facebook</Dropdown.Item>
+                            <Dropdown.Item onClick={this.select}>Instagram</Dropdown.Item>
+                            <Dropdown.Item onClick={this.select}>Twitter</Dropdown.Item>
+                            <Dropdown.Divider/>
+                            <Dropdown.Item onClick={this.select}>Influence</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </div>
-            );
-        } else if(value == "Facebook"){
-            return(
                 <div>
-                    <div className={styles.dropDownWrapper}>
-                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <Dropdown.Toggle>
-                                {this.state.value}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item onClick={this.select}>Facebook</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Instagram</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Twitter</Dropdown.Item>
-                                <Dropdown.Divider/>
-                                <Dropdown.Item onClick={this.select}>Overall</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                    <FacebookAnalytics {...this.props}/>
+                    <Component {...this.props}/>
                 </div>
-            );
-        } else if(value == "Twitter"){
-            return(
-                <div>
-                    <div className={styles.dropDownWrapper}>
-                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <Dropdown.Toggle>
-                                {this.state.value}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item onClick={this.select}>Facebook</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Instagram</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Twitter</Dropdown.Item>
-                                <Dropdown.Divider/>
-                                <Dropdown.Item onClick={this.select}>Overall</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                    <TwitterAnalytics {...this.props}/>
-                </div>
-            );
-        } else if(value == "Overall"){
-            return(
-                <div>
-                    <div className={styles.dropDownWrapper}>
-                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <Dropdown.Toggle>
-                                {this.state.value}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item onClick={this.select}>Facebook</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Instagram</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Twitter</Dropdown.Item>
-                                <Dropdown.Divider/>
-                                <Dropdown.Item onClick={this.select}>Overall</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                    <OverallAnalytics {...this.props}/>
-                </div>
-            );
-        } else{
-            return (
-                <div>
-                    <div className={styles.dropDownWrapper}>
-                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <Dropdown.Toggle>
-                                {this.state.value}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item onClick={this.select}>Facebook</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Instagram</Dropdown.Item>
-                                <Dropdown.Item onClick={this.select}>Twitter</Dropdown.Item>
-                                <Dropdown.Divider/>
-                                <Dropdown.Item onClick={this.select}>Overall</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                    <OverallAnalytics {...this.props}/>
-                </div>
-            );
-        }
+            </div>
+        );
     }
 }
