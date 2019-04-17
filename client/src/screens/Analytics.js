@@ -28,29 +28,7 @@ export default class Analytics extends Component {
         this.select = this.select.bind(this);
         this.state = {
             dropdownOpen: false,
-            value : "Influence",
-            posts : [
-                {
-                    id: 1,
-                    topic: "Facebook",
-                    btnSelected: false
-                },
-                {
-                    id: 2,
-                    topic: "Instagram",
-                    btnSelected: false
-                },
-                {
-                    id: 3,
-                    topic: "Twitter",
-                    btnSelected: false
-                },
-                {
-                    id: 4,
-                    topic: "Influence",
-                    btnSelected: true
-                },
-            ]
+            value : "Influence"
         };
     }
 
