@@ -36,10 +36,10 @@ export default class Analytics extends Component {
     /* eslint-disable react/no-set-state */
     toggle = () => this.setState((prevState) => ({dropdownOpen: !prevState.dropdownOpen}));
 
-    select = (event) => this.setState((prevState) => ({
-        dropdownOpen: !prevState.dropdownOpen,
-        value: event.target.innerText
-    }));
+    select = (event) => {
+        this.setState({value: event.target.innerText});
+        this.toggle();
+    };
     /* eslint-enable react/no-set-state */
 
     render() {
