@@ -1,72 +1,69 @@
 import React, {Component} from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 import {setFacebookData, setInstagramData, setTwitterData} from '../services/set-data-service';
-import Dropdown from "react-bootstrap/Dropdown";
-import styles from "../css/components/PageLayout.module.css"
-import InstagramAnalytics from "../components/InstagramAnalytics";
-import TwitterAnalytics from "../components/TwitterAnalytics";
-import FacebookAnalytics from "../components/FacebookAnalytics";
-import OverallAnalytics from "../components/OverallAnalytics";
+import styles from '../css/components/PageLayout.module.css';
+import InstagramAnalytics from '../components/InstagramAnalytics';
+import TwitterAnalytics from '../components/TwitterAnalytics';
+import FacebookAnalytics from '../components/FacebookAnalytics';
+import OverallAnalytics from '../components/OverallAnalytics';
+import {FACEBOOK, INFLUENCE, INSTAGRAM, TWITTER} from '../constants/analytic-types';
 
 const mapValueToComponent = {
-    ['Instagram']: InstagramAnalytics,
-    ['Facebook']: FacebookAnalytics,
-    ['Twitter']: TwitterAnalytics,
-    ['Influence']: OverallAnalytics
-}
+    [FACEBOOK]: FacebookAnalytics,
+    [INFLUENCE]: OverallAnalytics,
+    [INSTAGRAM]: InstagramAnalytics,
+    [TWITTER]: TwitterAnalytics
+};
 
 export default class Analytics extends Component {
-    componentDidMount() {
-        setInstagramData(this.props);
-        setTwitterData(this.props);
-        setFacebookData(this.props);
-    }
-
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.select = this.select.bind(this);
         this.state = {
             dropdownOpen: false,
-            value : "Influence"
+            value: INFLUENCE
         };
     }
 
-    toggle() {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen
-        });
+    componentDidMount() {
+        setInstagramData(this.props);
+        setTwitterData(this.props);
+        setFacebookData(this.props);
     }
 
-    select(event) {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen,
-            value: event.target.innerText
-        });
-    }
+    /* eslint-disable react/no-set-state */
+    toggle = () => this.setState((prevState) => ({dropdownOpen: !prevState.dropdownOpen}));
+
+    select = (event) => this.setState((prevState) => ({
+        dropdownOpen: !prevState.dropdownOpen,
+        value: event.target.innerText
+    }));
+    /* eslint-enable react/no-set-state */
 
     render() {
-        const Component = mapValueToComponent[this.state.value];
+        const CurrentComponent = mapValueToComponent[this.state.value];
 
         return (
             <div>
                 <div className={styles.dropDownWrapper}>
-                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                        <Dropdown.Toggle>
-                            {this.state.value}
-                        </Dropdown.Toggle>
-
+                    <Dropdown
+                        isOpen={this.state.dropdownOpen}
+                        toggle={this.toggle}
+                    >
+                        <Dropdown.Toggle>{this.state.value}</Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={this.select}>Facebook</Dropdown.Item>
-                            <Dropdown.Item onClick={this.select}>Instagram</Dropdown.Item>
-                            <Dropdown.Item onClick={this.select}>Twitter</Dropdown.Item>
-                            <Dropdown.Divider/>
-                            <Dropdown.Item onClick={this.select}>Influence</Dropdown.Item>
+                            <Dropdown.Item onClick={this.select}>{FACEBOOK}</Dropdown.Item>
+                            <Dropdown.Item onClick={this.select}>{INSTAGRAM}</Dropdown.Item>
+                            <Dropdown.Item onClick={this.select}>{TWITTER}</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item onClick={this.select}>{INFLUENCE}</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
                 <div>
-                    <Component {...this.props}/>
+                    <CurrentComponent {...this.props} />
                 </div>
             </div>
         );
