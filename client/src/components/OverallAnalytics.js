@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 
+import InstagramTwitterFollowers from '../graphs/OverallFollowers';
+
 export default class OverallAnalytics extends Component {
     render() {
-        const {instagramUser} = this.props;
-
         return (
             <div>
+                <InstagramTwitterFollowers {...this.props} />
             </div>
         );
     }

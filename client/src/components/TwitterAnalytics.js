@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 
-import TwitterFollowerRatio from "../graphs/TwitterFollowerRatio";
+import FollowerRatio from '../graphs/FollowerRatio';
+import {TWITTER} from '../constants/analytic-types';
 
 export default class TwitterAnalytics extends Component {
     render() {
-        const {twitterUser} = this.props;
-
         return (
             <div>
-                <TwitterFollowerRatio {...this.props}/>
+                <FollowerRatio
+                    platform={TWITTER}
+                    {...this.props}
+                />
             </div>
         );
     }

@@ -1,33 +1,19 @@
 import React, {Component} from 'react';
 import {Pie} from 'react-chartjs-2';
 
-
 import {blue, lightBlue, violet} from '../constants/colors';
 
 export default class TwitterFollowerRatio extends Component {
     render() {
-        const {facebookUser} = this.props;
+        const {facebookUser, instagramUser, twitterUser} = this.props;
 
-        if (!facebookUser.id) {
-            return null;
-        }
-
-        const {instagramUser} = this.props;
-
-        if (!instagramUser.id) {
-            return null;
-        }
-
-        const {twitterUser} = this.props;
-
-        if (!twitterUser.id) {
+        if (!Object.keys(facebookUser).length || !Object.keys(instagramUser).length || !Object.keys(twitterUser).length) {
             return null;
         }
 
         const facebook_friend_count = facebookUser.friends.summary.total_count;
         const insta_follower_count = instagramUser.follower_count;
         const twitter_follower_count = twitterUser.followers_count;
-
 
         const data = {
             datasets: [
@@ -49,7 +35,7 @@ export default class TwitterFollowerRatio extends Component {
 
         return (
             <div>
-                <h2>{'Facebook Friends and Instagram/Twitter Followers'}</h2>
+                <h2>{'Friends/Followers'}</h2>
                 <Pie
                     data={data}
                     height={500}

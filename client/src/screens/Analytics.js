@@ -49,7 +49,7 @@ export default class Analytics extends Component {
             <div>
                 <div className={styles.dropDownWrapper}>
                     <Dropdown
-                        isOpen={this.state.dropdownOpen}
+                        isopen={this.state.dropdownOpen.toString()}
                         toggle={this.toggle}
                     >
                         <Dropdown.Toggle>{this.state.value}</Dropdown.Toggle>
