@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 
-import {routes} from './routes';
+import {routes} from './constants/routes';
 
 export default class Routing extends Component {
     render() {

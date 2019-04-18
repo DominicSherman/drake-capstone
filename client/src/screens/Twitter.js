@@ -3,7 +3,7 @@ import queryString from 'query-string';
 
 import TwitterUserInfo from '../components/TwitterUserInfo';
 import LoginButton from '../components/LoginButton';
-import styles from '../css/components/Platform.module.css';
+import styles from '../css/components/PageLayout.module.css';
 import {setTwitterData} from '../services/set-data-service';
 
 export default class Twitter extends Component {
