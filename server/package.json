@@ -22,7 +22,7 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "firebase serve --only functions",
+    "start": "localhost=true firebase serve --only functions",
     "shell": "firebase functions:shell",
     "deploy": "localhost=false firebase deploy --only functions",
     "logs": "firebase functions:log"

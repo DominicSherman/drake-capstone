@@ -6,7 +6,7 @@
 .navLinkWrapper:before, .navLinkWrapper:after {
     width: 100%;
     height: 1px;
-    background-color: black;
+    background-color: white;
     content: '';
     display: flex;
     flex-direction: row;
