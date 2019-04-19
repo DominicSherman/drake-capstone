@@ -12,7 +12,6 @@ export default class FriendsProgressBar extends Component {
         }
 
         const friends_count = user[friendsColumn[platform]];
-
         const friends_goal = Math.round(friends_count*1.25);
         const now = Math.round((friends_count/friends_goal)*100);
 

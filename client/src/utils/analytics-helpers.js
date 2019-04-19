@@ -14,4 +14,4 @@ export const friendsColumn = {
     [FACEBOOK]: 'friends.summary.total_count',
     [INSTAGRAM]: 'follower_count',
     [TWITTER]: 'followers_count'
-}
+};
