@@ -10,8 +10,10 @@ export const followingColumn = {
     [TWITTER]: 'friends_count'
 };
 
-export const friendsColumn = {
-    [FACEBOOK]: 'friends.summary.total_count',
-    [INSTAGRAM]: 'follower_count',
-    [TWITTER]: 'followers_count'
+export const getFriendsOrFollowers = (platform, user) => {
+    if (platform === FACEBOOK) {
+        return user.friends.summary.total_count;
+    }
+
+    return user[followersColumn[platform]];
 };
