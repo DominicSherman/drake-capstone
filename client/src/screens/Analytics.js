@@ -43,6 +43,7 @@ export default class Analytics extends Component {
     /* eslint-enable react/no-set-state */
 
     render() {
+        console.log(this.props);
         const CurrentComponent = mapValueToComponent[this.state.value];
 
         return (
