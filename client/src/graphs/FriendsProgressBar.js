@@ -19,7 +19,7 @@ export default class FriendsProgressBar extends Component {
         return (
             <div>
                 <h2>{`${platform} Friends Progress Bar`}</h2>
-                <h4>{`Current Friends: ${friends_count}     Friends Goal: ${friends_goal}`}</h4>
+                <h4>{`Current Friends: ${friends_count}     Target Friends Goal: ${friends_goal}`}</h4>
                 <ProgressBar
                     animated
                     now={now}

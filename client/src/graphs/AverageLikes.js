@@ -1,41 +1,46 @@
+//Graph object, average likes or favorites across each platform
 import React, {Component} from 'react';
 import moment from 'moment';
 import {Bar} from 'react-chartjs-2';
 
-import {blue, red} from '../constants/colors';
-import {average} from 'Math';
+import {blue, red, violet} from '../constants/colors';
 export default class AverageLikesPlatforms extends Component {
     render() {
-        const {instagramMedia} = this.props;
 
-        if (!instagramMedia.length) {
+        const {facebookMedia, instagramMedia, twitterMedia} = this.props;
+
+        if (!Object.keys(facebookMedia).length || !Object.keys(instagramMedia).length || !Object.keys(twitterMedia).length) {
             return null;
         }
+        const sortedInstagramMedia = [...instagramMedia].reverse();
+        const sortedFacebookMedia = [...facebookMedia].reverse();
+        const sortedTwitterMedia = [...twitterMedia].reverse();
 
-        var avg = ()
-        const sortedMedia = [...instagramMedia].reverse();
-        const likesData = sortedMedia.map((post) => ({
+        const average1 = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+
+        const instagramlikesData = sortedInstagramMedia.map((post) => ({
             x: 'Average Number Likes',
-            y: post.likes.count
+            y: average1(post.likes.count) //how do i reference the array of all likes?
         }));
 
-        const commentData = sortedMedia.map((post) => ({
-            x: 'Average Number Comments',
-            y: post.comments.count
+        const facebooklikesData = sortedFacebookMedia.map((post) => ({
+            x: 'Average Number Likes',
+            y: average1(post.likes.count)
         }));
 
-        const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
-        const averageLikes = average(likesData);
-        const averageComments = average(commentData)
+        const twitterfavoritesData = sortedTwitterMedia.map((post) => ({
+            x: 'Average Number Favorites',
+            y: average1(post.favorites.count)
+        }));
 
         const barChartLabels = sortedMedia.map((post) => moment.unix(Number(post.created_time)).format('MMM-D-Y'));
         const data = {
             datasets: [
                 {
-                    backgroundColor: `${red}20`,
+                    backgroundColor: `${violet}20`,
                     borderColor: red,
                     borderWidth: 1,
-                    data: averageLikes,
+                    data: instagramlikesData,
                     hoverBackgroundColor: `${red}40`,
                     hoverBorderColor: red,
                     label: 'Likes'
@@ -44,7 +49,16 @@ export default class AverageLikesPlatforms extends Component {
                     backgroundColor: `${blue}20`,
                     borderColor: blue,
                     borderWidth: 1,
-                    data: averageComments,
+                    data: facebooklikesData,
+                    hoverBackgroundColor: `${blue}40`,
+                    hoverBorderColor: blue,
+                    label: 'Comments'
+                },
+                {
+                    backgroundColor: `${red}20`,
+                    borderColor: blue,
+                    borderWidth: 1,
+                    data: twitterfavoritesData,
                     hoverBackgroundColor: `${blue}40`,
                     hoverBorderColor: blue,
                     label: 'Comments'
