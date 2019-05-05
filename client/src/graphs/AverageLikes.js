@@ -16,21 +16,27 @@ export default class AverageLikesPlatforms extends Component {
         const sortedFacebookMedia = [...facebookMedia].reverse();
         const sortedTwitterMedia = [...twitterMedia].reverse();
 
-        const average1 = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+        //var average1 = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+
+        function getAvg(array) {
+            const total = array.reduce((acc, c) => acc + c, 0);
+            return total / array.length;
+        }
+
 
         const instagramlikesData = sortedInstagramMedia.map((post) => ({
-            x: 'Average Number Likes',
-            y: average1(post.likes.count) //how do i reference the array of all likes?
+            x: 'Average Instagram Likes',
+            y: getAvg(post.likes.count) //how do i reference the array of all likes?
         }));
 
         const facebooklikesData = sortedFacebookMedia.map((post) => ({
-            x: 'Average Number Likes',
-            y: average1(post.likes.count)
+            x: 'Average Facebook Likes',
+            y: getAvg(post.likes.count)
         }));
 
         const twitterfavoritesData = sortedTwitterMedia.map((post) => ({
-            x: 'Average Number Favorites',
-            y: average1(post.favorites.count)
+            x: 'Average Twitter Favorites',
+            y: getAvg(post.favorites.count)
         }));
 
         const barChartLabels = sortedMedia.map((post) => moment.unix(Number(post.created_time)).format('MMM-D-Y'));
