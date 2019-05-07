@@ -24,20 +24,20 @@ export default class AverageLikesPlatforms extends Component {
         }
 
 
-        const instagramlikesData = sortedInstagramMedia.map((post) => ({
+        const instagramlikesData = {
             x: 'Average Instagram Likes',
-            y: getAvg(post.likes.count) //how do i reference the array of all likes?
-        }));
+            y: getAvg(instagramMedia.map((post) => post.likes.count)) //how do i reference the array of all likes?
+         };
 
-        const facebooklikesData = sortedFacebookMedia.map((post) => ({
+        const facebooklikesData = {
             x: 'Average Facebook Likes',
-            y: getAvg(post.likes.count)
-        }));
+            y: getAvg(facebookMedia.map((post) => post.likes.count))
+        };
 
-        const twitterfavoritesData = sortedTwitterMedia.map((post) => ({
+        const twitterfavoritesData = {
             x: 'Average Twitter Favorites',
-            y: getAvg(post.favorites.count)
-        }));
+            y: getAvg(twitterMedia.map((post) => post.likes.count))
+        };
 
         const barChartLabels = sortedMedia.map((post) => moment.unix(Number(post.created_time)).format('MMM-D-Y'));
         const data = {
