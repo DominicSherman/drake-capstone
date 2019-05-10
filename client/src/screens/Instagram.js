@@ -28,7 +28,6 @@ export default class Instagram extends Component {
         }
 
         return (
-
             <div>
                 <div className={styles.userInfoWrapper}>
                     <InstagramUserInfo instagramUser={instagramUser} />

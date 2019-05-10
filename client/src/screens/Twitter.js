@@ -14,11 +14,7 @@ export default class Twitter extends Component {
     }
 
     render() {
-        const {twitterUserId, twitterUser, twitterMedia} = this.props;
-
-        console.log('twitterMedia', twitterMedia);
-        console.log('twitterUser', twitterUser);
-
+        const {twitterUserId, twitterUser} = this.props;
 
         if (!twitterUserId) {
             return (

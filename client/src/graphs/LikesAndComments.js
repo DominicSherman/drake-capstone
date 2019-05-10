@@ -3,25 +3,35 @@ import moment from 'moment';
 import {Bar} from 'react-chartjs-2';
 
 import {blue, red} from '../constants/colors';
+import {getComments, getLikes, secondaryColumnName, timestampColumn} from '../utils/analytics-helpers';
+import {INSTAGRAM} from '../constants/analytic-types';
 
-export default class InstagramLikesAndComments extends Component {
+export default class LikesAndComments extends Component {
     render() {
-        const {instagramMedia} = this.props;
+        const {platform} = this.props;
+        const media = this.props[`${platform.toLowerCase()}Media`];
 
-        if (!instagramMedia.length) {
+        if (!media.length) {
             return null;
         }
 
-        const sortedMedia = [...instagramMedia].reverse();
+        console.log('media', media);
+
+        const sortedMedia = [...media].reverse();
         const likesData = sortedMedia.map((post) => ({
-            x: post.created_time,
-            y: post.likes.count
+            x: post[timestampColumn[platform]],
+            y: getLikes(platform, post)
         }));
         const commentData = sortedMedia.map((post) => ({
-            x: post.created_time,
-            y: post.comments.count
+            x: post[timestampColumn[platform]],
+            y: getComments(platform, post)
         }));
-        const barChartLabels = sortedMedia.map((post) => moment.unix(Number(post.created_time)).format('MMM-D-Y'));
+        const barChartLabels = sortedMedia.map((post) => platform === INSTAGRAM ?
+            moment.unix(Number(post.created_time)).format('MMM-D-Y')
+            :
+            post[timestampColumn[platform]]
+        );
+
         const data = {
             datasets: [
                 {
@@ -40,7 +50,7 @@ export default class InstagramLikesAndComments extends Component {
                     data: commentData,
                     hoverBackgroundColor: `${blue}40`,
                     hoverBorderColor: blue,
-                    label: 'Comments'
+                    label: secondaryColumnName[platform]
                 }
             ],
             labels: barChartLabels
@@ -48,7 +58,7 @@ export default class InstagramLikesAndComments extends Component {
 
         return (
             <div>
-                <h2>{'Instagram Likes Over Time'}</h2>
+                <h2>{`${platform} Likes And ${secondaryColumnName[platform]} Over Time`}</h2>
                 <Bar
                     data={data}
                     height={500}

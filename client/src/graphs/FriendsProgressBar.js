@@ -8,7 +8,7 @@ export default class FriendsProgressBar extends Component {
         const {platform} = this.props;
         const user = this.props[`${platform.toLowerCase()}User`];
 
-        if (!Object.keys(user).length) {
+        if (!Object.keys(user).length || user.error) {
             return null;
         }
 
