@@ -23,7 +23,7 @@ export default class Analytics extends Component {
         this.select = this.select.bind(this);
         this.state = {
             dropdownOpen: false,
-            value: TWITTER
+            value: INFLUENCE
         };
     }
 
