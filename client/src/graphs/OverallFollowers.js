@@ -3,7 +3,7 @@ import {Pie} from 'react-chartjs-2';
 
 import {blue, lightBlue, violet} from '../constants/colors';
 
-export default class TwitterFollowerRatio extends Component {
+export default class OverallFollowers extends Component {
     render() {
         const {facebookUser, instagramUser, twitterUser} = this.props;
 
@@ -11,7 +11,7 @@ export default class TwitterFollowerRatio extends Component {
             return null;
         }
 
-        const facebook_friend_count = facebookUser.friends.summary.total_count;
+        const facebook_friend_count = facebookUser.error ? 0 : facebookUser.friends.summary.total_count;
         const insta_follower_count = instagramUser.follower_count;
         const twitter_follower_count = twitterUser.followers_count;
 

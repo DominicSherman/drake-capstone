@@ -17,3 +17,41 @@ export const getFriendsOrFollowers = (platform, user) => {
 
     return user[followersColumn[platform]];
 };
+
+export const likesColumn = {
+    [FACEBOOK]: 'likes',
+    [TWITTER]: 'favorite_count'
+};
+
+export const getLikes = (platform, post) => {
+    if (platform === INSTAGRAM) {
+        return post.likes.count;
+    }
+
+    return post[likesColumn[platform]];
+};
+
+export const commentsColumn = {
+    [FACEBOOK]: '',
+    [TWITTER]: 'retweet_count'
+};
+
+export const getComments = (platform, post) => {
+    if (platform === INSTAGRAM) {
+        return post.comments.count;
+    }
+
+    return post[commentsColumn[platform]];
+};
+
+export const timestampColumn = {
+    [FACEBOOK]: 'created_time',
+    [INSTAGRAM]: 'created_time',
+    [TWITTER]: 'created_at'
+};
+
+export const secondaryColumnName = {
+    [FACEBOOK]: '',
+    [INSTAGRAM]: 'Comments',
+    [TWITTER]: 'Retweets'
+};

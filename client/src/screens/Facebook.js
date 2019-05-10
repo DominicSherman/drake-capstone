@@ -23,6 +23,13 @@ export default class Facebook extends Component {
             return <LoginButton service={'facebook'} />;
         } else if (!facebookUser.name) {
             return null;
+        } else if (facebookUser.error) {
+            return (
+                <div className={styles.userInfoWrapper}>
+                    <p>{'There was an error with the loading the facebook user.'}</p>
+                    <p>{JSON.stringify(facebookUser.error)}</p>
+                </div>
+            );
         }
 
         return (
