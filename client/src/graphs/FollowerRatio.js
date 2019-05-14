@@ -1,3 +1,6 @@
+//Description: A pie chart graphical component. Displays a ratio of Twitter or Instagram followers to
+//             following count, as a doughnut chart.
+
 import React, {Component} from 'react';
 import {Doughnut} from 'react-chartjs-2';
 

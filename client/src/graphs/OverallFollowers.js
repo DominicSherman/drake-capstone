@@ -1,3 +1,6 @@
+//Description: a pie chart graphical component that shows overall friend count/follower count
+//             on a platform, for its sections.
+
 import React, {Component} from 'react';
 import {Pie} from 'react-chartjs-2';
 

@@ -1,0 +1,3 @@
+
+
+Containers store state information about the platforms, the application itself, and the analytics. Look under MapDispatchToProps to look at what state information is used. 
