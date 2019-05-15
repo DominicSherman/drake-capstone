@@ -1,3 +1,5 @@
+//Description: A bar chart graph component, average follower/friend count among each social media platform
+
 import React, {Component} from 'react';
 import {Bar} from 'react-chartjs-2';
 

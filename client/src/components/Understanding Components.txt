@@ -1,0 +1,10 @@
+
+To better organize our code and allow for code reusability, we set the analytics components as their own files. 
+
+Analytics- anything on the analytics page
+Media- Any Social Media Platform Media data- likes, comments, etc.
+UserInfo- User profile information- name, hometown, interests, etc.
+
+Components get passed to a screen, under the 'screens' folder in src. 
+
+The names of files are intended to give the best possible description of their purpose. 

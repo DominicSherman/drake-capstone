@@ -1,3 +1,6 @@
+//Description: A progress bar component, showing a target goal of followers or friends a user should aim for.
+//             Uses react ProgressBar bootstrap and an analytics helper function, can be applied to all analytics screens.
+
 import React, {Component} from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 

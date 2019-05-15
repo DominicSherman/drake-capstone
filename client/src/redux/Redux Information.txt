@@ -1,0 +1,3 @@
+
+
+These files are used for how data is set in our Redux state container- how the data loads, and how user and media information are set.

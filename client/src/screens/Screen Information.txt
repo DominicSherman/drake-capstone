@@ -1,0 +1,5 @@
+
+
+Each screen file is used for one of the 4 pages on the web application. You can find what components are displayed under the "render" function. 
+
+Analytics will have all the analytics information, with drop downs per section. 

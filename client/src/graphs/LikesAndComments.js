@@ -1,3 +1,5 @@
+//Description: A bar chart for likes and comments among many of an Platform User's posts
+
 import React, {Component} from 'react';
 import moment from 'moment';
 import {Bar} from 'react-chartjs-2';

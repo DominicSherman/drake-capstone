@@ -1,0 +1,3 @@
+
+
+Collecting information from the APIs, and authenticating platforms for the proper transfer of data. 
